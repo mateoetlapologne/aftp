@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="style.css">
 <head>
-    <title>Inscription</title>
+    <title>Forum</title>
 </head>
-<body>
-    <h1>Inscription</h1>
-    <form action="traitement_inscription.php" method="POST">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="S'inscrire">
-    </form>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pédo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="connexion.html"><button class="rounded-button">Poster</button></a>
+        <a href="connexion.html"><button class="rounded-button">Connexion</button></a>
+        <a href="inscription.html"><button class="rounded-button">Inscription</button></a>
+    </div>
+</div>
+
+    
+    <h2>Messages des membres :</h2>
+    <div id="messages">
+        <!-- Les posts seront affichés ici -->
+    </div>
 </body>
 </html>

@@ -1,57 +1,45 @@
-/* Réinitialisation des styles par défaut */
-body, form, h1, h2, label, input, textarea {
-    margin: 0;
-    padding: 0;
+/*Navbar*/
+.navbar {
+    background-color: #FF6347;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
-/* Styles généraux */
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+.left-button {
+    margin-right: auto;
 }
 
-h1, h2 {
-    margin-bottom: 20px;
+.right-buttons {
+    display: flex;
+    gap: 10px;
 }
 
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="password"],
-textarea {
-    width: 300px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
+.rounded-button {
     border: none;
-    border-radius: 4px;
+    border-radius: 7px;
+    padding: 8px 16px;
+    background-color: #FFF;
+    color: #FF6347;
+    font-weight: bold;
     cursor: pointer;
+    font-family: Arial, sans-serif;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.nav-title {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
 }
 
-/* Styles spécifiques à la page d'inscription */
-#username,
-#password {
-    margin-bottom: 10px;
+.nav-title:hover {
+    text-decoration: none;
 }
-
-/* Styles spécifiques à la page principale */
-#messages {
-    margin-bottom: 20px;
-}
+/*Navbar*/
