@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Requête SQL pour insérer les données dans la base de données
-        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos)
+        $requete = "INSERT INTO utilisateurs (photoVictime, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos)
             VALUES ('$nomPhotoVictime', '$preuveNoms[0]', '$preuveNoms[1]', '$preuveNoms[2]', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos')";
 
         // Exécution de la requête
