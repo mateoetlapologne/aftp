@@ -3,36 +3,19 @@
 <head>
     <title>Liste des Posts</title>
     <style>
-        .post-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .post {
-            width: 23%;
-            margin-bottom: 20px;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .post img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .post .caption {
-            margin-top: 10px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
+    </div>
+</div>
     <h1>Liste des Posts</h1>
     
     <?php

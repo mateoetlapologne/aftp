@@ -4,6 +4,16 @@
     <title>Liste des Posts</title>
 </head>
 <body>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
+    </div>
+</div>
     <h1>Liste des Posts</h1>
 
     <form action="recherche.php" method="GET">
