@@ -79,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = $_SERVER["DOCUMENT_ROOT"].'/image';
-        move_uploaded_file($_FILES["image"]["tmp_name"], $nomPhotoVictime);
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
             echo "L'image a été téléchargée avec succès.";
         } else {
