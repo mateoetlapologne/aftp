@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
-    $requete = "INSERT INTO utilisateurs (username, passwd) VALUES ('$username', '$motdepasse')";
+    $requete = "INSERT INTO users (username, passwd) VALUES ('$username', '$motdepasse')";
     
     // Exécuter la requête d'insertion
     if (mysqli_query($connexion, $requete)) {
@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="connexion.html"><button class="rounded-button">Connexion</button></a>
     </div>
 </div>
+    <h1>Inscription</h1>
     <form method="post">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
