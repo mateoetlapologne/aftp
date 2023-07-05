@@ -5,163 +5,210 @@
 </head>
 <body>
     <h1>Formulaire de Post</h1>
-    <form method="POST" action="traitement.php" enctype="multipart/form-data">
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Vérification des champs et traitement des données
+        $erreur = false;
+
+        // Vérification de l'image de la victime
+        if (isset($_FILES["image"])) {
+            $image = $_FILES["image"];
+            $extensionImage = strtolower(pathinfo($image["name"], PATHINFO_EXTENSION));
+
+            if (!in_array($extensionImage, ["jpg", "jpeg", "png", "gif"])) {
+                $erreur = true;
+                echo "L'image de la victime doit être au format JPG, JPEG, PNG ou GIF.";
+            }
+        } else {
+            $erreur = true;
+            echo "Veuillez sélectionner une image de la victime.";
+        }
+
+        // Vérification des preuves
+        $preuves = [];
+        $extensionsPreuves = [];
+
+        for ($i = 1; $i <= 3; $i++) {
+            $nomChampPreuve = "preuve" . $i;
+            if (isset($_FILES[$nomChampPreuve])) {
+                $preuve = $_FILES[$nomChampPreuve];
+                $extensionPreuve = strtolower(pathinfo($preuve["name"], PATHINFO_EXTENSION));
+
+                if (in_array($extensionPreuve, ["jpg", "jpeg", "png", "gif"])) {
+                    $preuves[$nomChampPreuve] = $preuve;
+                    $extensionsPreuves[$nomChampPreuve] = $extensionPreuve;
+                }
+            }
+        }
+
+        // Vérification des autres champs
+        $nom = $_POST["nom"] ?? "";
+        $prenom = $_POST["prenom"] ?? "";
+        $dateNaissance = $_POST["date_naissance"] ?? "";
+        $ville = $_POST["ville"] ?? "";
+        $adresse = $_POST["adresse"] ?? "";
+        $numero = $_POST["numero"] ?? "";
+        $reseauxSociaux = $_POST["reseaux_sociaux"] ?? "";
+        $pseudo = $_POST["pseudo"] ?? "";
+        $infos = $_POST["infos"] ?? "";
+
+        // Validation des champs
+        if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $nom)) {
+            $erreur = true;
+            echo "Le nom ne doit contenir que des lettres, des espaces et des tirets.";
+        }
+
+        if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $prenom)) {
+            $erreur = true;
+            echo "Le prénom ne doit contenir que des lettres, des espaces et des tirets.";
+        }
+
+        if (!empty($dateNaissance) && !preg_match("/^\d{4}-\d{2}-\d{2}$/", $dateNaissance)) {
+            $erreur = true;
+            echo "La date de naissance doit être au format 'AAAA-MM-JJ'.";
+        }
+
+        if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $ville)) {
+            $erreur = true;
+            echo "La ville ne doit contenir que des lettres, des espaces et des tirets.";
+        }
+
+        if (!preg_match("/^[a-zA-Z0-9À-ÿ\s-]+$/", $adresse)) {
+            $erreur = true;
+            echo "L'adresse doit contenir que des lettres, des chiffres, des espaces et des tirets.";
+        }
+
+        if (!preg_match("/^\d{10}$/", $numero)) {
+            $erreur = true;
+            echo "Le numéro de téléphone doit comporter 10 chiffres.";
+        }
+
+        if (!preg_match("/^[a-zA-Z0-9À-ÿ\s-]+$/", $pseudo)) {
+            $erreur = true;
+            echo "Le pseudo ne doit contenir que des lettres, des chiffres, des espaces et des tirets.";
+        }
+
+        if (strlen($infos) > 350) {
+            $erreur = true;
+            echo "Les informations ne doivent pas dépasser 350 caractères.";
+        }
+
+        // Si aucune erreur, enregistrement des données dans la base de données
+        if (!$erreur) {
+            // Connexion à la base de données (remplacez les valeurs par vos propres paramètres)
+            $serveur = "localhost";
+            $utilisateur = "votre_utilisateur";
+            $motDePasse = "votre_mot_de_passe";
+            $nomBDD = "votre_base_de_donnees";
+
+            $connexion = mysqli_connect($serveur, $utilisateur, $motDePasse, $nomBDD);
+
+            // Vérification de la connexion à la base de données
+            if (!$connexion) {
+                die("Erreur de connexion à la base de données : " . mysqli_connect_error());
+            }
+
+            // Préparation des données pour l'insertion dans la base de données
+            $imageNom = uniqid() . "." . $extensionImage;
+            $imageChemin = "images/" . $imageNom;
+
+            $preuve1Nom = uniqid() . "." . $extensionsPreuves["preuve1"];
+            $preuve1Chemin = "images/" . $preuve1Nom;
+
+            $preuve2Nom = "";
+            $preuve2Chemin = "";
+            if (isset($preuves["preuve2"])) {
+                $preuve2Nom = uniqid() . "." . $extensionsPreuves["preuve2"];
+                $preuve2Chemin = "images/" . $preuve2Nom;
+            }
+
+            $preuve3Nom = "";
+            $preuve3Chemin = "";
+            if (isset($preuves["preuve3"])) {
+                $preuve3Nom = uniqid() . "." . $extensionsPreuves["preuve3"];
+                $preuve3Chemin = "images/" . $preuve3Nom;
+            }
+
+            // Déplacement des fichiers téléchargés vers le dossier de destination
+            move_uploaded_file($image["tmp_name"], $imageChemin);
+            move_uploaded_file($preuves["preuve1"]["tmp_name"], $preuve1Chemin);
+            if (!empty($preuves["preuve2"])) {
+                move_uploaded_file($preuves["preuve2"]["tmp_name"], $preuve2Chemin);
+            }
+            if (!empty($preuves["preuve3"])) {
+                move_uploaded_file($preuves["preuve3"]["tmp_name"], $preuve3Chemin);
+            }
+            $ip = $_SERVER["REMOTE_ADDR"];
+            // Requête SQL pour insérer les données dans la base de données
+            $requete = "INSERT INTO posts (photoVictime, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, reseaux_sociaux, pseudo, infos, ip) VALUES ('$imageNom', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$reseauxSociaux', '$pseudo', '$infos', '$ip')";
+
+            // Exécution de la requête
+            if (mysqli_query($connexion, $requete)) {
+                echo "Le post a été enregistré avec succès.";
+            } else {
+                echo "Erreur lors de l'enregistrement du post : " . mysqli_error($connexion);
+            }
+
+            // Fermeture de la connexion à la base de données
+            mysqli_close($connexion);
+        }
+    }
+    ?>
+    <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
-        <input type="file" name="image" id="image" required>
+        <input type="file" name="image" required>
         <br><br>
+
         <label for="preuve1">Preuve 1 :</label>
-        <input type="file" name="preuve1" id="preuve1" required>
+        <input type="file" name="preuve1" required>
         <br><br>
+
         <label for="preuve2">Preuve 2 :</label>
-        <input type="file" name="preuve2" id="preuve2">
+        <input type="file" name="preuve2">
         <br><br>
+
         <label for="preuve3">Preuve 3 :</label>
-        <input type="file" name="preuve3" id="preuve3">
+        <input type="file" name="preuve3">
         <br><br>
+
         <label for="nom">Nom :</label>
-        <input type="text" name="nom" id="nom" required>
+        <input type="text" name="nom" required>
         <br><br>
+
         <label for="prenom">Prénom :</label>
-        <input type="text" name="prenom" id="prenom" required>
+        <input type="text" name="prenom" required>
         <br><br>
+
         <label for="date_naissance">Date de naissance :</label>
-        <input type="date" name="date_naissance" id="date_naissance" required>
+        <input type="date" name="date_naissance">
+        <input type="checkbox" name="date_naissance_inconnue" value="1"> Date de naissance inconnue
         <br><br>
+
         <label for="ville">Ville :</label>
-        <input type="text" name="ville" id="ville" required>
+        <input type="text" name="ville" required>
         <br><br>
+
         <label for="adresse">Adresse :</label>
-        <input type="text" name="adresse" id="adresse" required>
+        <input type="text" name="adresse" required>
         <br><br>
+
         <label for="numero">Numéro de téléphone :</label>
-        <input type="text" name="numero" id="numero" required>
+        <input type="text" name="numero" required>
         <br><br>
+
         <label for="reseaux_sociaux">Réseaux sociaux :</label>
-        <input type="text" name="reseaux_sociaux" id="reseaux_sociaux">
+        <input type="text" name="reseaux_sociaux">
         <br><br>
+
         <label for="pseudo">Pseudo :</label>
-        <input type="text" name="pseudo" id="pseudo" required>
+        <input type="text" name="pseudo" required>
         <br><br>
+
         <label for="infos">Informations :</label>
-        <textarea name="infos" id="infos" rows="4" required></textarea>
+        <textarea name="infos" rows="5" cols="40"></textarea>
         <br><br>
-        <input type="submit" value="Soumettre">
+
+        <input type="submit" value="Envoyer">
     </form>
 </body>
 </html>
-
-
-<?php
-// Vérification des champs avec des lettres, espaces et tirets
-function verifierChampLettres($valeur)
-{
-    return preg_match("/^[A-Za-z\s\-]+$/", $valeur);
-}
-
-// Vérification de la longueur maximale du champ pseudo
-function verifierLongueurPseudo($valeur)
-{
-    return strlen($valeur) <= 20;
-}
-
-// Vérification du format de la date de naissance
-function verifierFormatDateNaissance($valeur)
-{
-    return preg_match("/^\d{4}-\d{2}-\d{2}$/", $valeur);
-}
-
-// Vérification du format du numéro de téléphone
-function verifierFormatNumero($valeur)
-{
-    return preg_match("/^\d{10}$/", $valeur);
-}
-
-// Vérification des extensions d'image valides
-function verifierExtensionsImage($nomFichier)
-{
-    $extensionsValides = array("jpg", "jpeg", "png", "gif");
-    $extension = strtolower(pathinfo($nomFichier, PATHINFO_EXTENSION));
-    return in_array($extension, $extensionsValides);
-}
-
-// Générer un nom unique pour les fichiers
-function genererNomUnique($extension)
-{
-    return uniqid() . "." . $extension;
-}
-
-// Vérification des champs du formulaire et traitement des données
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $image = $_FILES["image"];
-    $preuve1 = $_FILES["preuve1"];
-    $preuve2 = $_FILES["preuve2"];
-    $preuve3 = $_FILES["preuve3"];
-    $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
-    $dateNaissance = $_POST["date_naissance"];
-    $ville = $_POST["ville"];
-    $adresse = $_POST["adresse"];
-    $numero = $_POST["numero"];
-    $reseauxSociaux = $_POST["reseaux_sociaux"];
-    $pseudo = $_POST["pseudo"];
-    $infos = $_POST["infos"];
-
-    // Validation des champs
-    if (!verifierChampLettres($nom) || !verifierChampLettres($prenom) || !verifierChampLettres($ville) || !verifierChampLettres($adresse)) {
-        echo "Les champs Nom, Prénom, Ville et Adresse doivent contenir uniquement des lettres, espaces et tirets.";
-    } elseif (!verifierLongueurPseudo($pseudo)) {
-        echo "Le champ Pseudo ne doit pas dépasser 20 caractères.";
-    } elseif (!verifierFormatDateNaissance($dateNaissance)) {
-        echo "Le format de la date de naissance est incorrect. Utilisez le format AAAA-MM-JJ.";
-    } elseif (!verifierFormatNumero($numero)) {
-        echo "Le numéro de téléphone doit comporter 10 chiffres.";
-    } elseif (strlen($infos) > 350) {
-        echo "Le champ Infos ne doit pas dépasser 350 caractères.";
-    } elseif (!verifierExtensionsImage($image["name"]) || !verifierExtensionsImage($preuve1["name"]) || (!empty($preuve2["name"]) && !verifierExtensionsImage($preuve2["name"])) || (!empty($preuve3["name"]) && !verifierExtensionsImage($preuve3["name"]))) {
-        echo "Les fichiers doivent être des images au format JPG, JPEG, PNG ou GIF.";
-    } else {
-        // Dossier de destination des images
-        $dossierDestination = "images/";
-
-        // Génération des noms uniques pour les fichiers
-        $nomImage = genererNomUnique(pathinfo($image["name"], PATHINFO_EXTENSION));
-        $nomPreuve1 = genererNomUnique(pathinfo($preuve1["name"], PATHINFO_EXTENSION));
-        $nomPreuve2 = !empty($preuve2["name"]) ? genererNomUnique(pathinfo($preuve2["name"], PATHINFO_EXTENSION)) : "";
-        $nomPreuve3 = !empty($preuve3["name"]) ? genererNomUnique(pathinfo($preuve3["name"], PATHINFO_EXTENSION)) : "";
-
-        // Upload des images
-        move_uploaded_file($image["tmp_name"], $dossierDestination . $nomImage);
-        move_uploaded_file($preuve1["tmp_name"], $dossierDestination . $nomPreuve1);
-        if (!empty($preuve2["name"])) {
-            move_uploaded_file($preuve2["tmp_name"], $dossierDestination . $nomPreuve2);
-        }
-        if (!empty($preuve3["name"])) {
-            move_uploaded_file($preuve3["tmp_name"], $dossierDestination . $nomPreuve3);
-        }
-
-        // Connexion à la base de données et insertion des données
-        $servername = "localhost";
-        $username = "root";
-        $password = "667";
-        $dbname = "aftp";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("La connexion à la base de données a échoué : " . $conn->connect_error);
-        }
-        $ip = $_SERVER['REMOTE_ADDR'];
-
-        $sql = "INSERT INTO posts (photo, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, reseaux_sociaux, pseudo, infos, ip)
-                VALUES ('$nomImage', '$nomPreuve1', '$nomPreuve2', '$nomPreuve3', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$reseauxSociaux', '$pseudo', '$infos', '$ip')";
-
-        if ($conn->query($sql) === true) {
-            echo "Les données ont été enregistrées avec succès.";
-        } else {
-            echo "Erreur lors de l'enregistrement des données : " . $conn->error;
-        }
-
-        $conn->close();
-    }
-}
-?>
