@@ -85,13 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Erreur lors du téléchargement de l'image.";
             echo $dossierDestination;
-            $_FILES["image"]["error"]
         }
         if(is_dir('image/')) {
             echo 'Le dossier existe';
         } else {
             echo 'Le dossier n\'existe pas';
         }
+
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
