@@ -79,6 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = $_SERVER["DOCUMENT_ROOT"] . "/var/www/html/aftp/image/";
+        if(is_dir('image/')) {
+            echo 'Le dossier existe';
+        } else {
+            echo 'Le dossier n\'existe pas';
+        }
         move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
             echo "L'image a été téléchargée avec succès.";
