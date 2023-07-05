@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
-    $requete = "INSERT INTO utilisateurs (pseudo, motdepasse) VALUES ('$nom', '$motdepasse')";
+    $requete = "INSERT INTO utilisateurs (nom, motdepasse) VALUES ('$nom', '$motdepasse')";
     
     // Exécuter la requête d'insertion
     if (mysqli_query($connexion, $requete)) {
