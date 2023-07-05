@@ -83,8 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
             echo "L'image a été téléchargée avec succès.";
         } else {
-            echo "Erreur lors du téléchargement de l'image.";
-            echo $dossierDestination;
+            if ($_FILES["image"]["error"] !== UPLOAD_ERR_OK) {
+                echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
         }
         if(is_dir('image/')) {
             echo 'Le dossier existe';
