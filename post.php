@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des données du formulaire
     $nom = $_POST["nom"];
     $prenom = $_POST["prenom"];
-    $age = $_POST["age"];
+    $dateNaissance = date('Y-m-d', strtotime($_POST['date_naissance']));
     $ville = $_POST["ville"];
     $adresse = $_POST["adresse"];
     $numero = $_POST["numero"];
@@ -97,8 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $ip = $_SERVER["REMOTE_ADDR"];
         // Requête SQL pour insérer les données dans la base de données
-        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, age, ville, adresse, numero, pseudo, infos, ip)
-            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$age', '$ville', '$adresse', '$numero', '$pseudo', '$infos', $ip)";
+        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip)
+            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$date_naissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', $ip)";
 
         // Exécution de la requête
         if (mysqli_query($connexion, $requete)) {
@@ -144,8 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="prenom" required>
         <br><br>
 
-        <label for="age">Age :</label>
-        <input type="int" name="age" >
+        <label for="date_naissance">Age :</label>
+        <input type="date" name="date_naissance" >
         <br><br>
 
         <label for="ville">Ville :</label>
