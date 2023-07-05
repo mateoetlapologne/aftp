@@ -28,12 +28,16 @@
         <span class="error"><?php echo $prenomErr; ?></span><br>
 
         <label for="dateNaissance">Date de naissance :</label>
-        <input type="text" name="dateNaissance" id="dateNaissance" placeholder="jj/mm/aaaa" required>
+        <input type="text" name="dateNaissance" id="dateNaissance" placeholder="jj/mm/aaaa" >
         <input type="checkbox" name="dateInconnue">Date inconnue
         <span class="error"><?php echo $dateNaissanceErr; ?></span><br>
 
         <label for="adresse">Adresse :</label>
         <input type="text" name="adresse" id="adresse" required>
+        <span class="error"><?php echo $adresseErr; ?></span><br>
+
+        <label for="adresse">Ville</label>
+        <input type="text" name="ville" id="ville" required>
         <span class="error"><?php echo $adresseErr; ?></span><br>
 
         <label for="numero">Numéro de téléphone :</label>
@@ -54,110 +58,43 @@
 </html>
 
 <?php
-$imageErr = $nomErr = $prenomErr = $dateNaissanceErr = $adresseErr = $numeroErr = $pseudoErr = $infosErr = "";
-$image = $nom = $prenom = $dateNaissance = $adresse = $numero = $pseudo = $infos = "";
+// Connexion à la base de données
+$servername = "localhost";
+$username = "nom_utilisateur";
+$password = "mot_de_passe";
+$dbname = "nom_base_de_donnees";
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Erreur de connexion à la base de données : " . $conn->connect_error);
+}
+
+// Traitement du formulaire lorsque celui-ci est soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validation de l'image
-    if (empty($_FILES["image"]["name"])) {
-        $imageErr = "Veuillez sélectionner une image";
+    // Récupération des valeurs du formulaire
+    $image = $_FILES["image"]["name"];
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
+    $dateNaissance = $_POST["dateNaissance"];
+    $adresse = $_POST["adresse"];
+    $ville = $_POST["ville"];
+    $numero = $_POST["numero"];
+    $pseudo = $_POST["pseudo"];
+    $infos = $_POST["infos"];
+    $ip = $_SERVER["REMOTE_ADDR"];
+    // Insertion des données dans la table
+    $sql = "INSERT INTO utilisateurs (image, nom, prenom, date_naissance, adresse, ville, numero, pseudo, infos, ip)
+            VALUES ('$image', '$nom', '$prenom', '$dateNaissance', '$adresse', '$ville', '$numero', '$pseudo', '$infos', '$ip')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Enregistrement réussi !";
     } else {
-        $image = $_FILES["image"]["name"];
-        $imageFileType = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-
-        // Vérifier le type de fichier (uniquement les images sont autorisées)
-        $allowedExtensions = array("jpg", "jpeg", "png", "gif");
-        if (!in_array($imageFileType, $allowedExtensions)) {
-            $imageErr = "Seules les images au format JPG, JPEG, PNG et GIF sont autorisées";
-        }
-
-        // Vérifier la taille de l'image (maximum 2 Mo)
-        if ($_FILES["image"]["size"] > 2 * 1024 * 1024) {
-            $imageErr = "La taille de l'image ne doit pas dépasser 2 Mo";
-        }
-
-        // Déplacer l'image vers le dossier de destination
-        move_uploaded_file($_FILES["image"]["tmp_name"], "chemin/vers/dossier/" . $image);
-    }
-
-    // Validation du nom
-    if (empty($_POST["nom"])) {
-        $nomErr = "Veuillez saisir votre nom";
-    } else {
-        $nom = test_input($_POST["nom"]);
-        // Vérifier si le nom ne contient que des lettres et des espaces
-        if (!preg_match("/^[a-zA-Z ]*$/", $nom)) {
-            $nomErr = "Seules les lettres et les espaces sont autorisés";
-        }
-    }
-
-    // Validation du prénom
-    if (empty($_POST["prenom"])) {
-        $prenomErr = "Veuillez saisir votre prénom";
-    } else {
-        $prenom = test_input($_POST["prenom"]);
-        // Vérifier si le prénom ne contient que des lettres et des espaces
-        if (!preg_match("/^[a-zA-Z ]*$/", $prenom)) {
-            $prenomErr = "Seules les lettres et les espaces sont autorisés";
-        }
-    }
-
-    // Validation de la date de naissance
-    if (empty($_POST["dateNaissance"]) && !isset($_POST["dateInconnue"])) {
-        $dateNaissanceErr = "Veuillez saisir votre date de naissance ou cocher 'Date inconnue'";
-    } else {
-        $dateNaissance = test_input($_POST["dateNaissance"]);
-        // Vérifier si la date de naissance est au format valide (jj/mm/aaaa)
-        if (!preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $dateNaissance)) {
-            $dateNaissanceErr = "Le format de la date de naissance doit être jj/mm/aaaa";
-        }
-    }
-
-    // Validation de l'adresse
-    if (empty($_POST["adresse"])) {
-        $adresseErr = "Veuillez saisir votre adresse";
-    } else {
-        $adresse = test_input($_POST["adresse"]);
-    }
-
-    // Validation du numéro de téléphone
-    if (empty($_POST["numero"])) {
-        $numeroErr = "Veuillez saisir votre numéro de téléphone";
-    } else {
-        $numero = test_input($_POST["numero"]);
-        // Vérifier si le numéro de téléphone ne contient que des chiffres et a une longueur de 10
-        if (!preg_match("/^[0-9]{10}$/", $numero)) {
-            $numeroErr = "Le numéro de téléphone doit contenir 10 chiffres";
-        }
-    }
-
-    // Validation du pseudo
-    if (empty($_POST["pseudo"])) {
-        $pseudoErr = "Veuillez saisir votre pseudo";
-    } else {
-        $pseudo = test_input($_POST["pseudo"]);
-        // Vérifier si le pseudo ne dépasse pas 20 caractères
-        if (strlen($pseudo) > 20) {
-            $pseudoErr = "Le pseudo ne doit pas dépasser 20 caractères";
-        }
-    }
-
-    // Validation des informations
-    if (empty($_POST["infos"])) {
-        $infosErr = "Veuillez saisir les informations";
-    } else {
-        $infos = test_input($_POST["infos"]);
-        // Vérifier si les informations ne dépassent pas 350 caractères
-        if (strlen($infos) > 350) {
-            $infosErr = "Les informations ne doivent pas dépasser 350 caractères";
-        }
+        echo "Erreur lors de l'enregistrement : " . $conn->error;
     }
 }
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+// Fermeture de la connexion à la base de données
+$conn->close();
 ?>
