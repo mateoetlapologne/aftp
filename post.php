@@ -80,6 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = "/var/www/html/aftp/image/";
         move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
+            echo "L'image a été téléchargée avec succès.";
+        } else {
+            echo "Erreur lors du téléchargement de l'image.";
+        }
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
