@@ -1,37 +1,40 @@
 <?php
-$servername = "localhost"; // Remplacez par le nom de votre serveur MySQL
-$username = "root"; // Remplacez par votre nom d'utilisateur MySQL
-$password = "667"; // Remplacez par votre mot de passe MySQL
-$dbname = "aftp"; // Remplacez par le nom de votre base de données
-
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $nom_utilisateur = $_POST['username'];
-    $mot_de_passe = $_POST['password'];
-
-    // Hasher le mot de passe
-    $mot_de_passe_hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-
+    // Récupérer les valeurs du formulaire
+    $username = $_POST["username"];
+    $motdepasse = $_POST["motdepasse"];
+    
     // Connexion à la base de données
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
+    $serveur = "localhost"; // Remplacez par le nom de votre serveur MySQL
+    $utilisateur = "root"; // Remplacez par votre nom d'utilisateur MySQL
+    $mdp = "667"; // Remplacez par votre mot de passe MySQL
+    $bdd = "aftp"; // Remplacez par le nom de votre base de données
+    
+    $connexion = mysqli_connect($serveur, $utilisateur, $mdp, $bdd);
+    
     // Vérifier la connexion
-    if ($conn->connect_error) {
-        die("La connexion a échoué : " . $conn->connect_error);
+    if (!$connexion) {
+        die("La connexion à la base de données a échoué: " . mysqli_connect_error());
     }
-
-    // Requête SQL d'insertion
-    $sql = "INSERT INTO users (nom_utilisateur, mot_de_passe) VALUES ('$nom_utilisateur', '$mot_de_passe_hash')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Inscription réussie.";
+    
+    // Échapper les caractères spéciaux pour éviter les injections SQL
+    $nom = mysqli_real_escape_string($connexion, $nom);
+    $email = mysqli_real_escape_string($connexion, $email);
+    $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
+    
+    // Créer la requête d'insertion
+    $requete = "INSERT INTO utilisateurs (username, passwd) VALUES ('$username', '$motdepasse')";
+    
+    // Exécuter la requête d'insertion
+    if (mysqli_query($connexion, $requete)) {
+        $message = "Inscription réussie !";
     } else {
-        echo "Erreur lors de l'inscription : " . $conn->error;
+        $erreur = "Erreur lors de l'inscription : " . mysqli_error($connexion);
     }
-
-    // Fermer la connexion
-    $conn->close();
+    
+    // Fermer la connexion à la base de données
+    mysqli_close($connexion);
 }
 ?>
 
@@ -52,9 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="connexion.html"><button class="rounded-button">Connexion</button></a>
     </div>
 </div>
-
-    <h2>Registration</h2>
-    <form method="post" action="register.php">
+    <form method="post">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required><br><br>
         <label for="password">Password:</label>
@@ -63,3 +64,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </body>
 </html>
+
