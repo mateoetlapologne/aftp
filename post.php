@@ -84,6 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "L'image a été téléchargée avec succès.";
         } else {
             echo "Erreur lors du téléchargement de l'image.";
+            echo $dossierDestination;
+            echo $_FILES["image"]["error"]
         }
         if(is_dir('image/')) {
             echo 'Le dossier existe';
