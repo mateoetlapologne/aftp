@@ -3,7 +3,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les valeurs du formulaire
     $username = $_POST["username"];
-    $motdepasse = $_POST["motdepasse"];
+    $motdepasse = $_POST["password"];
     
     // Connexion à la base de données
     $serveur = "localhost"; // Remplacez par le nom de votre serveur MySQL
