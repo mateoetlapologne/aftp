@@ -122,7 +122,95 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulaire de Post</title>
+    <title>Affiche ton pedo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #433F3F;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+    
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #272626;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #666262; 
+    }
+    
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #272626;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    
+        input[type="file"] {
+        margin-bottom: 10px;
+        color: #666262; 
+    }
+
+    input[type="file"]::file-selector-button {
+        padding: 10px 20px;
+        background-color: #666262;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: #666262;
+    }
+
+    input[type="file"]::file-selected-button {
+        padding: 10px 20px;
+        background-color: #666262;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="file"]::file-selected-button:hover {
+        background-color: #666262;
+    }
+    
+        input[type="submit"] {
+            background-color: #666262;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #666262;
+        }
+    </style>
 </head>
 <body>
     <h1>Formulaire de Post</h1>
