@@ -109,6 +109,9 @@ if ($conn->connect_error) {
             if ($_FILES["photoVictime"]["size"] > 5 * 1024 * 1024) {
                 $photoVictimeErr = "La taille de l'image ne doit pas dépasser 5 Mo";
             }
+            if ($_FILES["photoVictime"]["error"] !== UPLOAD_ERR_OK) {
+                echo "Erreur lors de l'upload de l'image de la victime : " . $_FILES["photoVictime"]["error"];
+            }
 
             // Déplacer l'image vers le dossier de destination
             move_uploaded_file($_FILES["photoVictime"]["tmp_name"], "image/" . $photoVictime);
