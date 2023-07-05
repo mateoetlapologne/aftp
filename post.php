@@ -5,6 +5,21 @@
 </head>
 <body>
     <?php
+
+    // Paramètres de connexion à la base de données
+$servername = "localhost"; // Nom du serveur (par défaut : localhost)
+$username = "root"; // Nom d'utilisateur MySQL
+$password = "667"; // Mot de passe MySQL
+$dbname = "aftp"; // Nom de la base de données
+
+// Connexion à la base de données
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Erreur de connexion à la base de données : " . $conn->connect_error);
+}
+
     // Définir les variables et les messages d'erreur
     $preuve1Err = $preuve2Err = $preuve3Err = $nomErr = $prenomErr = $dateNaissanceErr = $adresseErr = $numeroErr = $pseudoErr = $infosErr = "";
     $preuve1 = $preuve2 = $preuve3 = $photoVictime = $nom = $prenom = $dateNaissance = $adresse = $numero = $pseudo = $infos = "";
