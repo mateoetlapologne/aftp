@@ -37,22 +37,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($connexion);
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulaire d'inscription</title>
+    <title>Inscription</title>
 </head>
+<link rel="stylesheet" type="text/css" href="css/inscription.css">
 <body>
-    <?php if (isset($message)) : ?>
-        <h3><?php echo $message; ?></h3>
-    <?php endif; ?>
-    
-    <?php if (isset($erreur)) : ?>
-        <h3><?php echo $erreur; ?></h3>
-    <?php endif; ?>
-    
-    <h2>Inscription</h2>
+
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pédo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="connexion.html"><button class="rounded-button">Poster</button></a>
+        <a href="connexion.html"><button class="rounded-button">Connexion</button></a>
+    </div>
+</div>
+
+    <h2>Registration</h2>
     <form method="post">
         <label for="nom">Nom :</label>
         <input type="text" name="nom" required><br><br>
