@@ -3,7 +3,6 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les valeurs du formulaire
     $nom = $_POST["nom"];
-    $email = $_POST["email"];
     $motdepasse = $_POST["motdepasse"];
     
     // Connexion à la base de données
