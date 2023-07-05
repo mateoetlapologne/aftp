@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomPhotoVictime = uniqid() . "." . $imageExtension;
 
         // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = "image/";
+        $dossierDestination = "/var/www/html/aftp/image/";
         move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
