@@ -25,7 +25,7 @@
     }
 
     // Requête SQL pour récupérer les posts dans l'ordre chronologique
-    $requete = "SELECT photoVictime, nom, prenom FROM utilisateurs ORDER BY date_creation DESC";
+    $requete = "SELECT photoVictime, nom, prenom FROM utilisateurs ORDER BY datepost DESC";
 
     // Exécution de la requête
     $resultat = mysqli_query($connexion, $requete);
