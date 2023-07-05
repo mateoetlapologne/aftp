@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
-    $requete = "INSERT INTO utilisateurs (nom, motdepasse) VALUES ('$nom', '$motdepasse')";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $requete = "INSERT INTO utilisateurs (nom, motdepasse, ip) VALUES ('$nom', '$motdepasse', '$ip')";
     
     // Exécuter la requête d'insertion
     if (mysqli_query($connexion, $requete)) {
@@ -59,10 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post">
         <label for="nom">Nom :</label>
         <input type="text" name="nom" required><br><br>
-        
-        <label for="email">Email :</label>
-        <input type="email" name="email" required><br><br>
-        
         <label for="motdepasse">Mot de passe :</label>
         <input type="password" name="motdepasse" required><br><br>
         
