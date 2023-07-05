@@ -23,11 +23,11 @@ $pp = "/pp/default.png";
 
 // Connexion à la base de données
 $servername = "localhost";
-$username = "root";
+$usernamebdd = "root";
 $password = "667";
 $dbname = "aftp";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $usernamebdd, $password, $dbname);
 
 // Vérification de la connexion
 if ($conn->connect_error) {
@@ -35,7 +35,7 @@ if ($conn->connect_error) {
 }
 
 // Insertion des données dans la base de données
-$sql = "INSERT INTO aftp (username, passwd, ip, pp) VALUES ('$username', '$passwd', '$ip', '$pp')";
+$sql = "INSERT INTO users (username, passwd, ip, pp) VALUES ('$username', '$passwd', '$ip', '$pp')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Données enregistrées avec succès";
