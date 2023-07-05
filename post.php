@@ -80,21 +80,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = $_SERVER["DOCUMENT_ROOT"] . "/var/www/html/aftp/image/";
         move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
-            echo "L'image a été téléchargée avec succès.";
-        } else {
-            echo "Erreur lors du téléchargement de l'image.";
-            echo $dossierDestination;
-            $_FILES["image"]["error"]
-        }
-        if(is_dir('image/')) {
-            echo 'Le dossier existe';
-        } else {
-            echo 'Le dossier n\'existe pas';
-        }
         if ($_FILES["image"]["error"] !== UPLOAD_ERR_OK) {
             $erreur = true;
             echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
+        } else {
+            // L'upload de l'image s'est déroulé avec succès, vous pouvez continuer le traitement
+            // ...
+    
+            // Déplacement de l'image vers le dossier de destination
+            move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
+    
+        // if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
+        //     echo "L'image a été téléchargée avec succès.";
+        // } else {
+        //     echo "Erreur lors du téléchargement de l'image.";
+        //     echo $dossierDestination;
+        //     $_FILES["image"]["error"]
+        // }
+        // if(is_dir('image/')) {
+        //     echo 'Le dossier existe';
+        // } else {
+        //     echo 'Le dossier n\'existe pas';
+        // }
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
