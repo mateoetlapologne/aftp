@@ -2,8 +2,9 @@
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les valeurs du formulaire
-    $username = $_POST["username"];
-    $motdepasse = $_POST["password"];
+    $nom = $_POST["nom"];
+    $email = $_POST["email"];
+    $motdepasse = $_POST["motdepasse"];
     
     // Connexion à la base de données
     $serveur = "localhost"; // Remplacez par le nom de votre serveur MySQL
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
-    $requete = "INSERT INTO users (username, passwd) VALUES ('$username', '$motdepasse')";
+    $requete = "INSERT INTO utilisateurs (nom, email, motdepasse) VALUES ('$nom', '$email', '$motdepasse')";
     
     // Exécuter la requête d'insertion
     if (mysqli_query($connexion, $requete)) {
@@ -41,29 +42,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inscription</title>
+    <title>Formulaire d'inscription</title>
 </head>
-<link rel="stylesheet" type="text/css" href="css/inscription.css">
 <body>
-
-<div class="navbar">
-    <div class="left-button">
-        <a href="#" class="nav-title">Affiche Ton Pédo</a>
-    </div>
-    <div class="right-buttons">
-        <a href="connexion.html"><button class="rounded-button">Poster</button></a>
-        <a href="connexion.html"><button class="rounded-button">Connexion</button></a>
-    </div>
-</div>
-    <h1>Inscription</h1>
+    <?php if (isset($message)) : ?>
+        <h3><?php echo $message; ?></h3>
+    <?php endif; ?>
+    
+    <?php if (isset($erreur)) : ?>
+        <h3><?php echo $erreur; ?></h3>
+    <?php endif; ?>
+    
+    <h2>Inscription</h2>
     <form method="post">
-        <label for="username">Pseudo</label>
-        <input type="text" name="username" required><br><br>
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" required><br><br>
+        
+        <label for="email">Email :</label>
+        <input type="email" name="email" required><br><br>
+        
         <label for="motdepasse">Mot de passe :</label>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="motdepasse" required><br><br>
         
         <input type="submit" value="S'inscrire">
     </form>
 </body>
 </html>
-
