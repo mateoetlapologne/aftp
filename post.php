@@ -3,11 +3,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des données du formulaire
     $nom = $_POST["nom"];
     $prenom = $_POST["prenom"];
-    $dateNaissance = $_POST["date_naissance"];
+    $age = $_POST["age"];
     $ville = $_POST["ville"];
     $adresse = $_POST["adresse"];
     $numero = $_POST["numero"];
-    $reseauxSociaux = $_POST["reseaux_sociaux"];
     $pseudo = $_POST["pseudo"];
     $infos = $_POST["infos"];
 
@@ -98,8 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $ip = $_SERVER["REMOTE_ADDR"];
         // Requête SQL pour insérer les données dans la base de données
-        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip)
-            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', $ip)";
+        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, age, ville, adresse, numero, pseudo, infos, ip)
+            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$age', '$ville', '$adresse', '$numero', '$pseudo', '$infos', $ip)";
 
         // Exécution de la requête
         if (mysqli_query($connexion, $requete)) {
@@ -145,12 +144,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="prenom" required>
         <br><br>
 
-        <label for="date_naissance">Date de naissance :</label>
-        <input type="date" name="date_naissance" required>
+        <label for="age">Age :</label>
+        <input type="int" name="age" >
         <br><br>
 
         <label for="ville">Ville :</label>
-        <input type="text" name="ville">
+        <input type="text" name="ville" required>
         <br><br>
 
         <label for="adresse">Adresse :</label>
@@ -158,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="numero">Numéro de téléphone :</label>
-        <input type="text" name="numero" required>
+        <input type="text" name="numero" >
         <br><br>
 
         <label for="pseudo">Pseudo :</label>
@@ -166,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="infos">Informations :</label>
-        <textarea name="infos" required></textarea>
+        <textarea name="infos" ></textarea>
         <br><br>
 
         <input type="submit" value="Soumettre">
