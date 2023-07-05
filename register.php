@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost"; // Remplacez par le nom de votre serveur MySQL
-$username = "nom_utilisateur"; // Remplacez par votre nom d'utilisateur MySQL
-$password = "mot_de_passe"; // Remplacez par votre mot de passe MySQL
-$dbname = "nom_base_de_donnees"; // Remplacez par le nom de votre base de données
+$username = "root"; // Remplacez par votre nom d'utilisateur MySQL
+$password = "667"; // Remplacez par votre mot de passe MySQL
+$dbname = "aftp"; // Remplacez par le nom de votre base de données
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
