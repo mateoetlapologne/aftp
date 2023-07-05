@@ -89,10 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo 'Le dossier existe';
         } else {
             echo 'Le dossier n\'existe pas';
-            echo $_FILES["image"]["error"]
-        echo $_FILES["image"]["tmp_name"]
-        echo $dossierDestination
         }
+        
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
