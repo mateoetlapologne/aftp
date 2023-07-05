@@ -46,7 +46,7 @@
             
             echo '<a href="page_custom.php?id=' . $id . '">';
             echo '<div class="post">';
-            echo '<img src="chemin_vers_le_dossier_des_images/' . $photoVictime . '">';
+            echo '<img src="image/' . $photoVictime . '">';
             echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
             echo '</a>';
