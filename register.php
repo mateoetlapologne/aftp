@@ -8,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Connexion à la base de données
     $serveur = "localhost"; // Remplacez par le nom de votre serveur MySQL
-    $utilisateur = "nom_utilisateur"; // Remplacez par votre nom d'utilisateur MySQL
-    $mdp = "mot_de_passe"; // Remplacez par votre mot de passe MySQL
-    $bdd = "nom_bdd"; // Remplacez par le nom de votre base de données
+    $utilisateur = "root"; // Remplacez par votre nom d'utilisateur MySQL
+    $mdp = "667"; // Remplacez par votre mot de passe MySQL
+    $bdd = "aftp"; // Remplacez par le nom de votre base de données
     
     $connexion = mysqli_connect($serveur, $utilisateur, $mdp, $bdd);
     
