@@ -104,7 +104,7 @@
         // Si toutes les validations sont réussies, insérer les données dans la base de données
         if (empty($preuve1Err) && empty($preuve2Err) && empty($preuve3Err) && empty($photoVictimeErr) && empty($nomErr) && empty($prenomErr) && empty($dateNaissanceErr) && empty($adresseErr) && empty($numeroErr) && empty($pseudoErr) && empty($infosErr)) {
             // Connexion à la base de données
-            $conn = new mysqli("localhost", "utilisateur", "motdepasse", "basededonnees");
+            $conn = new mysqli("localhost", "root", "667", "aftp");
 
             // Vérifier la connexion
             if ($conn->connect_error) {
@@ -124,9 +124,36 @@
             $pseudo = $conn->real_escape_string($_POST["pseudo"]);
             $infos = $conn->real_escape_string($_POST["infos"]);
 
+            // Vérifications supplémentaires
+if ($preuve1 != "") {
+    // Vérification de l'extension de fichier pour preuve1
+    $ext1 = strtolower(pathinfo($_FILES["preuve1"]["name"], PATHINFO_EXTENSION));
+    if (!in_array($ext1, $extensionsAutorisees)) {
+        $preuve1Err = "Seules les images de type JPG, JPEG, PNG et GIF sont autorisées pour preuve 1";
+    }
+}
+
+// Vérification des champs nom, prénom, adresse, pseudo et infos
+if (!preg_match("/^[a-zA-Z\- ]*$/", $nom)) {
+    $nomErr = "Le nom ne peut contenir que des lettres, des espaces et des tirets";
+}
+if (!preg_match("/^[a-zA-Z\- ]*$/", $prenom)) {
+    $prenomErr = "Le prénom ne peut contenir que des lettres, des espaces et des tirets";
+}
+if (!preg_match("/^[a-zA-Z0-9\- ]*$/", $adresse)) {
+    $adresseErr = "L'adresse ne peut contenir que des lettres, des chiffres, des espaces et des tirets";
+}
+if (!preg_match("/^[a-zA-Z0-9\- ]*$/", $pseudo)) {
+    $pseudoErr = "Le pseudo ne peut contenir que des lettres, des chiffres, des espaces et des tirets";
+}
+if (!preg_match("/^[a-zA-Z0-9\- ]*$/", $infos)) {
+    $infosErr = "Les informations ne peuvent contenir que des lettres, des chiffres, des espaces et des tirets";
+}
+
+
             // Insertion des données dans la table
-            $sql = "INSERT INTO utilisateurs (preuve1, preuve2, preuve3, photoVictime, nom, prenom, date_naissance, adresse, numero, pseudo, infos)
-                    VALUES ('$preuve1', '$preuve2', '$preuve3', '$photoVictime', '$nom', '$prenom', '$dateNaissance', '$adresse', '$numero', '$pseudo', '$infos')";
+            $sql = "INSERT INTO utilisateurs (preuve1, preuve2, preuve3, photoVictime, nom, prenom, date_naissance, adresse, ville, numero, pseudo, infos)
+                    VALUES ('$preuve1', '$preuve2', '$preuve3', '$photoVictime', '$nom', '$prenom', '$dateNaissance', '$adresse', '$ville', '$numero', '$pseudo', '$infos')";
 
             if ($conn->query($sql) === true) {
                 echo "Enregistrement réussi";
@@ -174,13 +201,18 @@
         </div>
         <div>
             <label for="dateNaissance">Date de naissance :</label>
-            <input type="date" name="dateNaissance" id="dateNaissance" required>
+            <input type="date" name="dateNaissance" id="dateNaissance" >
             <input type="checkbox" name="dateNaissanceInconnue" id="dateNaissanceInconnue"> Date de naissance inconnue
             <span><?php echo $dateNaissanceErr; ?></span>
         </div>
         <div>
             <label for="adresse">Adresse :</label>
             <input type="text" name="adresse" id="adresse" required>
+            <span><?php echo $adresseErr; ?></span>
+        </div>
+        <div>
+            <label for="adresse">Ville</label>
+            <input type="text" name="ville" id="ville" required>
             <span><?php echo $adresseErr; ?></span>
         </div>
         <div>
