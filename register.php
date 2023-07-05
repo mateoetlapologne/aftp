@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
-    $requete = "INSERT INTO utilisateurs (nom, email, motdepasse) VALUES ('$nom', '$email', '$motdepasse')";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $pfp = "/pp/defaut.png"
+    $requete = "INSERT INTO utilisateurs (nom, motdepasse, ip, pp) VALUES ('$nom', '$motdepasse', '$ip', '$pfp')";
     
     // Exécuter la requête d'insertion
     if (mysqli_query($connexion, $requete)) {
