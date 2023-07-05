@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $ip = $_SERVER["REMOTE_ADDR"];
         // Requête SQL pour insérer les données dans la base de données
-        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip)
+        $requete = "INSERT INTO utilisateurs (photoVictime, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip)
             VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', '$ip')";
 
         // Exécution de la requête
