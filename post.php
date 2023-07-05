@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomPhotoVictime = uniqid() . "." . $imageExtension;
 
         // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = $_SERVER["DOCUMENT_ROOT"].'/image/';
+        $dossierDestination = 'localhost/aftp/image/';
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
             echo "L'image a été téléchargée avec succès.";
         } else {
@@ -205,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <h1>Formulaire de Post</h1>
+    <h1>Fais tourner la data man</h1>
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
         <input type="file" name="image" required>
