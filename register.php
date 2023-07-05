@@ -19,8 +19,7 @@ function generateSalt($length = 10) {
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les valeurs du formulaire
-    $nom = $_POST["nom"];
-    $email = $_POST["email"];
+    $nom = $_POST["pseudo"];
     $motdepasse = $_POST["motdepasse"];
     
     // Connexion à la base de données
