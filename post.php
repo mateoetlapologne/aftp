@@ -78,13 +78,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomPhotoVictime = uniqid() . "." . $imageExtension;
 
         // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = "image/";
+        $dossierDestination = $_SERVER["DOCUMENT_ROOT"].'/image/';
         move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
             echo "L'image a été téléchargée avec succès.";
         } else {
             echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
-            echo $dossierDestination;
         }
         if(is_dir('image/')) {
             echo 'Le dossier existe';
