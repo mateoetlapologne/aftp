@@ -80,8 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = $_SERVER["DOCUMENT_ROOT"].'image/';
         move_uploaded_file($image_file["tmp_name"],__DIR__ . "/image/" . $image_file["&nomPhotoVictime"])
-
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
+        if (move_uploaded_file($image_file["tmp_name"],__DIR__ . "/image/" . $image_file["&nomPhotoVictime"])) {
             echo "L'image a été téléchargée avec succès.";
         } else {
             echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
