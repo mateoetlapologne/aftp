@@ -140,7 +140,7 @@
             }
             $ip = $_SERVER["REMOTE_ADDR"];
             // Requête SQL pour insérer les données dans la base de données
-            $requete = "INSERT INTO utilisateurs (photoVictime, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, reseaux_sociaux, pseudo, infos, ip) VALUES ('$imageNom', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$reseauxSociaux', '$pseudo', '$infos', '$ip')";
+            $requete = "INSERT INTO utilisateurs (photoVictime, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip) VALUES ('$imageNom', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', '$ip')";
 
             // Exécution de la requête
             if (mysqli_query($connexion, $requete)) {
@@ -194,10 +194,6 @@
 
         <label for="numero">Numéro de téléphone :</label>
         <input type="text" name="numero" required>
-        <br><br>
-
-        <label for="reseaux_sociaux">Réseaux sociaux :</label>
-        <input type="text" name="reseaux_sociaux">
         <br><br>
 
         <label for="pseudo">Pseudo :</label>
