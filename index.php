@@ -13,7 +13,9 @@
     </div>
 </div>
 <h1>Liste des Posts</h1>
-<?php
+<h1>Liste des Posts</h1>
+    
+    <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "667", "aftp");
 
@@ -23,25 +25,34 @@
     }
 
     // Requête SQL pour récupérer les posts dans l'ordre chronologique
-    $requete = "SELECT photoVictime, nom, prenom FROM utilisateurs ORDER BY datepost DESC";
+    $requete = "SELECT photoVictime, nom, prenom FROM utilisateurs ORDER BY date_creation DESC";
+
+    // Exécution de la requête
     $resultat = mysqli_query($connexion, $requete);
 
-    // Vérification de la requête
-    if (!$resultat) {
-        echo "Erreur lors de la récupération des posts : " . mysqli_error($connexion);
-    } else {
-        // Parcourir les résultats et afficher les prévisualisations des posts
+    // Vérification des résultats
+    if (mysqli_num_rows($resultat) > 0) {
+        // Affichage des posts
+        $count = 0;
+        echo '<div class="post-container">';
         while ($row = mysqli_fetch_assoc($resultat)) {
-            $photoVictime = $row['photoVictime'];
-            $nom = $row['nom'];
-            $prenom = $row['prenom'];
-
-            // Affichage de la prévisualisation
-            echo '<div class="post-preview">';
-            echo '<img src="chemin_vers_dossier_images/' . $photoVictime . '" alt="Photo de la victime">';
-            echo '<h3>' . $nom . ' ' . $prenom . '</h3>';
+            $photoVictime = $row["photoVictime"];
+            $nom = $row["nom"];
+            $prenom = $row["prenom"];
+            
+            echo '<div class="post">';
+            echo '<img src="chemin_vers_le_dossier_des_images/' . $photoVictime . '">';
+            echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
+
+            $count++;
+            if ($count % 4 == 0) {
+                echo '</div><div class="post-container">';
+            }
         }
+        echo '</div>';
+    } else {
+        echo "Aucun post trouvé.";
     }
 
     // Fermeture de la connexion à la base de données
