@@ -167,6 +167,14 @@ if (!preg_match("/^[a-zA-Z0-9\- ]*$/", $pseudo)) {
 if (!preg_match("/^[a-zA-Z0-9\- ]*$/", $infos)) {
     $infosErr = "Les informations ne peuvent contenir que des lettres, des chiffres, des espaces et des tirets";
 }
+$dossierDestination = "image/";
+// ...
+
+move_uploaded_file($_FILES["photoVictime"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
+move_uploaded_file($_FILES["preuve1"]["tmp_name"], $dossierDestination . $nomPreuve1);
+move_uploaded_file($_FILES["preuve2"]["tmp_name"], $dossierDestination . $nomPreuve2);
+move_uploaded_file($_FILES["preuve3"]["tmp_name"], $dossierDestination . $nomPreuve3);
+
 
 
             // Insertion des données dans la table
