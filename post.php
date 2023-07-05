@@ -45,7 +45,7 @@ if ($conn->connect_error) {
             }
 
             // Déplacer l'image vers le dossier de destination
-            move_uploaded_file($_FILES["preuve1"]["tmp_name"], "image/" . $preuve1);
+            move_uploaded_file($_FILES["preuve1"]["tmp_name"], "/image/" . $preuve1);
         }
 
         // Validation de la preuve 2
@@ -65,7 +65,7 @@ if ($conn->connect_error) {
             }
 
             // Déplacer l'image vers le dossier de destination
-            move_uploaded_file($_FILES["preuve2"]["tmp_name"], "image/" . $preuve2);
+            move_uploaded_file($_FILES["preuve2"]["tmp_name"], "/image/" . $preuve2);
         } else {
             $preuve2 = "";
         }
@@ -87,7 +87,7 @@ if ($conn->connect_error) {
             }
 
             // Déplacer l'image vers le dossier de destination
-            move_uploaded_file($_FILES["preuve3"]["tmp_name"], "image/" . $preuve3);
+            move_uploaded_file($_FILES["preuve3"]["tmp_name"], "/image/" . $preuve3);
         } else {
             $preuve3 = "";
         }
@@ -114,7 +114,7 @@ if ($conn->connect_error) {
             }
 
             // Déplacer l'image vers le dossier de destination
-            move_uploaded_file($_FILES["photoVictime"]["tmp_name"], "image/" . $photoVictime);
+            move_uploaded_file($_FILES["photoVictime"]["tmp_name"], "/image/" . $photoVictime);
         }
 
         // Validation des autres champs ...
