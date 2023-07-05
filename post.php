@@ -22,6 +22,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "L'extension de l'image n'est pas valide. Les extensions autorisées sont : " . implode(", ", $extensionsImages);
     }
 
+    // Vérification des extensions des preuves
+    $extensionsPreuves = array();
+    foreach ($_FILES["preuve"]["tmp_name"] as $key => $tmp_name) {
+        $extension = strtolower(pathinfo($_FILES["preuve"]["name"][$key], PATHINFO_EXTENSION));
+        if (!empty($_FILES["preuve"]["name"][$key]) && !in_array($extension, $extensionsImages)) {
+            $erreur = true;
+            echo "L'extension de la preuve " . ($key + 1) . " n'est pas valide. Les extensions autorisées sont : " . implode(", ", $extensionsImages);
+        }
+        $extensionsPreuves[$key] = $extension;
+    }
+
+    // Vérification des champs de texte
+    if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $nom)) {
+        $erreur = true;
+        echo "Le nom ne doit contenir que des lettres, des espaces et des tirets.";
+    }
+
+    if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $prenom)) {
+        $erreur = true;
+        echo "Le prénom ne doit contenir que des lettres, des espaces et des tirets.";
+    }
+
+    if (!empty($ville) && !preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $ville)) {
+        $erreur = true;
+        echo "La ville ne doit contenir que des lettres, des espaces et des tirets.";
+    }
+
+    if (!preg_match("/^\d{10}$/", $numero)) {
+        $erreur = true;
+        echo "Le numéro de téléphone doit comporter 10 chiffres.";
+    }
+
+    if (!preg_match("/^[a-zA-Z0-9À-ÿ\s-]+$/", $pseudo)) {
+        $erreur = true;
+        echo "Le pseudo ne doit contenir que des lettres, des chiffres, des espaces et des tirets.";
+    }
+
+    if (strlen($infos) > 350) {
+        $erreur = true;
+        echo "Les informations ne doivent pas dépasser 350 caractères.";
+    }
+
     // Si aucune erreur, enregistrement des données dans la base de données et upload des images
     if (!$erreur) {
         // Connexion à la base de données
@@ -36,20 +78,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomPhotoVictime = uniqid() . "." . $imageExtension;
 
         // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = "images/";
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
-            // Requête SQL pour insérer les données dans la base de données
-            $requete = "INSERT INTO utilisateurs (image, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos)
-                VALUES ('$nomPhotoVictime', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos')";
+        $dossierDestination = "image/";
+        move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime);
 
-            // Exécution de la requête
-            if (mysqli_query($connexion, $requete)) {
-                echo "Le post a été enregistré avec succès.";
-            } else {
-                echo "Erreur lors de l'enregistrement du post : " . mysqli_error($connexion);
+        // Génération de noms uniques pour les preuves et enregistrement dans la base de données
+        $preuveNoms = array();
+        foreach ($_FILES["preuve"]["tmp_name"] as $key => $tmp_name) {
+            if (!empty($_FILES["preuve"]["name"][$key])) {
+                $preuveNom = uniqid() . "." . $extensionsPreuves[$key];
+                move_uploaded_file($tmp_name, $dossierDestination . $preuveNom);
+                $preuveNoms[] = $preuveNom;
             }
+        }
+
+        // Requête SQL pour insérer les données dans la base de données
+        $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos)
+            VALUES ('$nomPhotoVictime', '$preuveNoms[0]', '$preuveNoms[1]', '$preuveNoms[2]', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos')";
+
+        // Exécution de la requête
+        if (mysqli_query($connexion, $requete)) {
+            echo "Le post a été enregistré avec succès.";
         } else {
-            echo "Erreur lors de l'upload de l'image.";
+            echo "Erreur lors de l'enregistrement du post : " . mysqli_error($connexion);
         }
 
         // Fermeture de la connexion à la base de données
@@ -67,6 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
         <input type="file" name="image" required>
+        <br><br>
+
+        <label for="preuve">Preuve(s) :</label>
+        <input type="file" name="preuve[]" multiple>
         <br><br>
 
         <label for="nom">Nom :</label>
@@ -98,10 +152,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="infos">Informations :</label>
-        <textarea name="infos" ></textarea>
+        <textarea name="infos"></textarea>
         <br><br>
 
-        <input type="submit" value="Soumettre">
+        <input type="submit" value="Enregistrer le Post">
     </form>
 </body>
 </html>
