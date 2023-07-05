@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ip = $_SERVER["REMOTE_ADDR"];
         // Requête SQL pour insérer les données dans la base de données
         $requete = "INSERT INTO utilisateurs (image, preuve1, preuve2, preuve3, nom, prenom, date_naissance, ville, adresse, numero, pseudo, infos, ip)
-            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$date_naissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', $ip)";
+            VALUES ('$nomPhotoVictime', '$preuve1Nom', '$preuve2Nom', '$preuve3Nom', '$nom', '$prenom', '$dateNaissance', '$ville', '$adresse', '$numero', '$pseudo', '$infos', '$ip')";
 
         // Exécution de la requête
         if (mysqli_query($connexion, $requete)) {
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="date_naissance">Age :</label>
-        <input type="date" name="date_naissance" >
+        <input type="date" name="date_naissance">
         <br><br>
 
         <label for="ville">Ville :</label>
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="numero">Numéro de téléphone :</label>
-        <input type="text" name="numero" >
+        <input type="text" name="numero">
         <br><br>
 
         <label for="pseudo">Pseudo :</label>
@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="infos">Informations :</label>
-        <textarea name="infos" ></textarea>
+        <textarea name="infos"></textarea>
         <br><br>
 
         <input type="submit" value="Soumettre">
