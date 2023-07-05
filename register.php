@@ -2,8 +2,9 @@
 // Traitement des données d'inscription
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
-    $email = $_POST['email'];
+    $passwd = $_POST['password'];
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $pp = "/pp/default.png";
 
     // Enregistrer les informations d'inscription ici
     // ...
@@ -15,14 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <?php
 // Récupération des données du formulaire
-$nom = $_POST['nom'];
-$email = $_POST['email'];
+$username = $_POST['username'];
+$passwd = $_POST['password'];
+$ip = $_SERVER['REMOTE_ADDR'];
+$pp = "/pp/default.png";
 
 // Connexion à la base de données
 $servername = "localhost";
-$username = "nom_utilisateur";
-$password = "mot_de_passe";
-$dbname = "nom_base_de_données";
+$username = "root";
+$password = "667";
+$dbname = "aftp";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -32,7 +35,7 @@ if ($conn->connect_error) {
 }
 
 // Insertion des données dans la base de données
-$sql = "INSERT INTO table_utilisateurs (nom, email) VALUES ('$nom', '$email')";
+$sql = "INSERT INTO aftp (username, passwd, ip, pp) VALUES ('$username', '$passwd', '$ip', '$pp')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Données enregistrées avec succès";
