@@ -57,11 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
     <h1>Inscription</h1>
     <form method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <input type="submit" value="Register">
+        <label for="username">Pseudo</label>
+        <input type="text" name="username" required><br><br>
+        <label for="motdepasse">Mot de passe :</label>
+        <input type="password" name="password" required><br><br>
+        
+        <input type="submit" value="S'inscrire">
     </form>
 </body>
 </html>
