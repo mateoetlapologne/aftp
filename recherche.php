@@ -25,7 +25,7 @@
         $search = $_GET['search'];
 
         // Requête SQL pour récupérer les posts correspondant à la recherche
-        $requete = "SELECT id, photoVictime, nom, prenom FROM utilisateurs WHERE nom LIKE '%$search%' OR prenom LIKE '%$search%' ORDER BY date_creation DESC";
+        $requete = "SELECT id, photoVictime, nom, prenom FROM utilisateurs WHERE nom LIKE '%$search%' OR prenom LIKE '%$search%' ORDER BY datepost DESC";
 
         // Exécution de la requête
         $resultat = mysqli_query($connexion, $requete);
