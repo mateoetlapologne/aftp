@@ -42,4 +42,24 @@
 .nav-title:hover {
     text-decoration: none;
 }
+
+.post {
+    display: inline-block;
+    width: 23%;
+    margin: 1%;
+    text-align: center;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+}
+
+.post .caption {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
 /*Navbar*/

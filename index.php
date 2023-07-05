@@ -2,22 +2,6 @@
 <html>
 <head>
     <title>Affiche Ton Pedo</title>
-    <style>
-        .post-preview {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-
-        .post-preview img {
-            max-width: 200px;
-            height: auto;
-        }
-
-        .post-preview h3 {
-            margin: 10px 0;
-        }
-    </style>
 </head>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <div class="navbar">
