@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Échapper les caractères spéciaux pour éviter les injections SQL
     $nom = mysqli_real_escape_string($connexion, $nom);
-    $email = mysqli_real_escape_string($connexion, $email);
     $motdepasse = mysqli_real_escape_string($connexion, $motdepasse);
     
     // Créer la requête d'insertion
