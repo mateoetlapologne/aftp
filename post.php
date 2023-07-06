@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
             color: #fff;
         }
-        h1 {
+        h2 {
             text-align: center;
             color: #fff;
             font-size: 40px;
