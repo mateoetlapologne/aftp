@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $infos = $_POST["infos"];
 
     // Vérification des extensions des fichiers uploadés
-    $extensionsImages = array("jpg", "jpeg", "png");
+    $extensionsImages = array("jpg", "jpeg", "png", "");
 
     $erreur = false;
 
