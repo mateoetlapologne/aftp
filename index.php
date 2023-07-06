@@ -17,7 +17,7 @@
     </div>
 </div>
     <h1>Liste des Posts</h1>
-    <div class="container">
+    
     <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "667", "aftp");
@@ -46,8 +46,8 @@
             
             echo '<a href="page_custom.php?id=' . $id . '">';
             echo '<div class="post">';
-            echo '<img src="image/' . $photoVictime . '>';
-            echo '<div class="post-content">' . $nom . ' ' . $prenom . '</div>';
+            echo '<img src="image/' . $photoVictime . '" class="post-image">';
+            echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
             echo '</a>';
 
@@ -65,7 +65,7 @@
     mysqli_close($connexion);
     ?>
     <footer>
-    </div>
+    <div class="container">
         <p class="btc-address">Adresse BTC : 3DsfSuEx5s2iAvfo92EjPHw2H69pYMGkeN</p>
         <p class="btc-address">Adresse ETH : 0x88cD9D40de35f36A82918b168f78AC1D233BF6bd</p>
     </div>
@@ -73,5 +73,3 @@
 
 </body>
 </html>
-
-
