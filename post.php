@@ -126,11 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         h1 {
             text-align: center;
             color: #fff;
+            font-size: 35px;
         }
         h2 {
             text-align: center;
             color: #fff;
-            font-size: 40px;
+            font-size: 10px;
         }
     
         form {
