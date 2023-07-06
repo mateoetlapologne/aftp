@@ -38,9 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erreur = true;
         echo "Le nom ne doit contenir que des lettres, des espaces et des tirets.";
     }
-    
+
     if (empty($age)) {
         $age = 999;
+    }
+
+    if(empty($nomPhotoVictime)) {
+        $nomPhotoVictime = "default.jpg";
     }
 
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $prenom)) {
@@ -121,110 +125,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Affiche ton pedo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #433F3F;
-            margin: 0;
-            padding: 20px;
-        }
-    
-        h1 {
-            text-align: center;
-            color: #fff;
-            font-size: 35px;
-        }
-        h2 {
-            text-align: center;
-            color: #fff;
-            font-size: 20px;
-        }
-    
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #272626;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-    
-        label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-        color: #666262; 
-    }
-    
-        input[type="text"],
-        input[type="date"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #272626;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-    
-        input[type="file"] {
-        margin-bottom: 10px;
-        color: #666262; 
-    }
-
-    input[type="file"]::file-selector-button {
-        padding: 10px 20px;
-        background-color: #666262;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    input[type="file"]::file-selector-button:hover {
-        background-color: #666262;
-    }
-
-    input[type="file"]::file-selected-button {
-        padding: 10px 20px;
-        background-color: #666262;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    input[type="file"]::file-selected-button:hover {
-        background-color: #666262;
-    }
-    
-        input[type="submit"] {
-            background-color: #666262;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
-        }
-    
-        input[type="submit"]:hover {
-            background-color: #666262;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/post.css">
 </head>
 <body>
     <h1>Fais tourner la data man</h1>
     <h2>Si tu n'as pas une infos, laisse la case vide"</h2>
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
-        <input type="file" name="image" required>
+        <input type="file" name="image">
         <br><br>
 
-        <label for="preuve">Preuve(s) :</label>
+        <label for="preuve">Preuve(s) :*</label>
         <input type="file" name="preuve[]" multiple required>
         <br><br>
 
@@ -232,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="nom">
         <br><br>
 
-        <label for="prenom">Prénom :</label>
+        <label for="prenom">Prénom :*</label>
         <input type="text" name="prenom" required>
         <br><br>
 
@@ -252,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="numero" >
         <br><br>
 
-        <label for="pseudo">Pseudo :</label>
+        <label for="pseudo">Pseudo :*</label>
         <input type="text" name="pseudo" required>
         <br><br>
 
@@ -261,6 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <input type="submit" value="Enregistrer le Post">
+        <h2>Les champs marqués d'un * sont obligatoires.</h2>
     </form>
 </body>
 </html>
