@@ -38,6 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erreur = true;
         echo "Le nom ne doit contenir que des lettres, des espaces et des tirets.";
     }
+    
+    if (empty($age)) {
+        $age = 999;
+    }
 
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $prenom)) {
         $erreur = true;
