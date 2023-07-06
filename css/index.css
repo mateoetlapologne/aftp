@@ -1,6 +1,6 @@
 /*Navbar*/
 .navbar {
-    background-color: #FF6347;
+    background-color: #272626;
     padding: 10px;
     display: flex;
     justify-content: flex-end;
@@ -10,6 +10,12 @@
     left: 0;
     right: 0;
     z-index: 1;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #433F3F;
+    margin: 0;
+    padding: 20px;
 }
 
 .left-button {
@@ -89,7 +95,7 @@ footer {
 }
 
 .btc-address {
-    color: #FF6347;
+    color: #272626;
     font-weight: bold;
     font-size: 16px;
 }
