@@ -32,6 +32,12 @@
     font-family: Arial, sans-serif;
 }
 
+.post-image {
+    width: 100%;
+    height: auto;
+    max-width: 1600px;
+    max-height: 900px;
+}
 .nav-title {
     color: #FFF;
     font-weight: bold;
