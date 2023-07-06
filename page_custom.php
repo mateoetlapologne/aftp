@@ -41,6 +41,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="index.php"><button class="rounded-button">Menu</button></a>
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+    </div>
     <title> squigame </title>
     <style>
         .post {

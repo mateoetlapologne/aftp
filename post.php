@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="#" class="nav-title">Affiche Ton Pedo</a>
     </div>
     <div class="right-buttons">
-        <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="index.php"><button class="rounded-button">Menu</button></a>
         <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
     </div>
 </div>

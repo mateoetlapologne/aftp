@@ -124,7 +124,7 @@ body {
     border-radius: 7px;
     padding: 8px 16px;
     background-color: #FFF;
-    color: #FF6347;
+    color: #433F3F;
     font-weight: bold;
     cursor: pointer;
     font-family: Arial, sans-serif;
@@ -142,7 +142,7 @@ body {
     min-height: 900px;
 }
 .nav-title {
-    color: #FFF;
+    color: #433F3F;
     font-weight: bold;
     text-decoration: none;
     font-family: Arial, sans-serif;
