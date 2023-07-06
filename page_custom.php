@@ -74,24 +74,24 @@
         }
         echo '<div class="Info">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
-            echo  '<div class="Info">Nom =' . $nom . '</div>';
+            echo  '<div class="Info">Nom = ' . $nom . '</div>';
         }
         if (!empty($numero)){
-            echo  '<div class="caption">Prénom =' . $numero . '</div>';
+            echo  '<div class="caption">Numéro de telephone  = ' . $numero . '</div>';
         }
         if (!$age == 999){
-            echo  '<div class="caption">Nom =' . $age . '</div>';
+            echo  '<div class="caption">Nom = ' . $age . '</div>';
         }
         if (!empty($ville)){
-            echo  '<div class="caption">Ville =' . $ville . '</div>';
+            echo  '<div class="caption">Ville = ' . $ville . '</div>';
         }
         if (!empty($adresse)){
-            echo  '<div class="caption">Adresse =' . $adresse . '</div>';
+            echo  '<div class="caption">Adresse = ' . $adresse . '</div>';
         }
         if (!empty($infos)){
-            echo  '<div class="caption">Autres Infos =' . $infos . '</div>';
+            echo  '<div class="caption">Autres Infos = ' . $infos . '</div>';
         }
-        echo '<div class="caption">Posté le par ' . $pseudo . '</div>';
+        echo '<div class="caption">Posté le ' . $datepost . ' par ' .pseudo .'</div>';
         echo '</div>';
     } else {
         echo "Post introuvable.";
