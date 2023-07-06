@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo  . $nom .; ?> </title>
+    <title><?php echo  . $nom . ?></title>
     <style>
         .post {
             text-align: center;
