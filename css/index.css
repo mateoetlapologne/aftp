@@ -92,7 +92,9 @@ footer {
     text-align: center;
     background-color: #433F3F;
     padding: 20px 0;
+    width: 100%;
 }
+
 
 .btc-address {
     color: #272626;
