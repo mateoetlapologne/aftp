@@ -41,6 +41,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/custom.css">
 <div class="navbar">
     <div class="left-button">
         <a href="#" class="nav-title">Affiche Ton Pedo</a>
