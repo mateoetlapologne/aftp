@@ -66,7 +66,8 @@
     ?>
     <footer>
     <div class="container">
-        <p class="btc-address">Adresse BTC : 1ABCDEF123456789</p>
+        <p class="btc-address">Adresse BTC : 3DsfSuEx5s2iAvfo92EjPHw2H69pYMGkeN</p>
+        <p class="btc-address">Adresse ETH : 0x88cD9D40de35f36A82918b168f78AC1D233BF6bd</p>
     </div>
 </footer>
 
