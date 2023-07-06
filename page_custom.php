@@ -81,7 +81,7 @@
         if (!empty($infos)){
             echo  '<div class="caption">Autres Infos =' . $infos . '</div>';
         }
-        echo '<div class="caption">Posté le '' par ' . $pseudo . '</div>';
+        echo '<div class="caption">Posté le par ' . $pseudo . '</div>';
         echo '</div>';
     } else {
         echo "Post introuvable.";
