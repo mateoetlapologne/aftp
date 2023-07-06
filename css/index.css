@@ -82,3 +82,14 @@
     margin-top: 10px;
     font-weight: bold;
 }
+footer {
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 20px 0;
+}
+
+.btc-address {
+    color: #FF6347;
+    font-weight: bold;
+    font-size: 16px;
+}

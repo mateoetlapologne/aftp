@@ -64,5 +64,11 @@
     // Fermeture de la connexion à la base de données
     mysqli_close($connexion);
     ?>
+    <footer>
+    <div class="container">
+        <p class="btc-address">Adresse BTC : 1ABCDEF123456789</p>
+    </div>
+</footer>
+
 </body>
 </html>
