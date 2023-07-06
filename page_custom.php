@@ -47,7 +47,7 @@
         $prenom = $row["prenom"];
         $age = $row["age"];
         $adresse = $row["adresse"];
-        $datepost = $row["datepost"];
+        $timestamp = $row["datepost"];
         $pseudo = $row["pseudo"];
         $infos = $row["infos"];
         $ville = $row["ville"];
@@ -55,6 +55,7 @@
         $preuve1 = $row["preuve1"];
         $preuve2 = $row["preuve2"];
         $preuve3 = $row["preuve3"];
+        $datepost = date("Y-m-d", $timestamp);
 
         echo '<div class="post">';
         echo '<div class="caption">TETE DU PEDO</div>';
