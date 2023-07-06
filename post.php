@@ -49,10 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "La ville ne doit contenir que des lettres, des espaces et des tirets.";
     }
 
-    if (!preg_match("/^\d{10}$/", $numero)) {
+    if (!empty($numero) && !preg_match("/^\d{10}$/", $numero)) {
         $erreur = true;
         echo "Le numéro de téléphone doit comporter 10 chiffres.";
     }
+    
 
     if (!preg_match("/^[a-zA-Z0-9À-ÿ\s-]+$/", $pseudo)) {
         $erreur = true;
@@ -78,8 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nomPhotoVictime = uniqid() . "." . $imageExtension;
 
         // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = 'localhost/aftp/image/';
+        $dossierDestination = 'image/';
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
+            
             echo "L'image a été téléchargée avec succès.";
         } else {
             echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
