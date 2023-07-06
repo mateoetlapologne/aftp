@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page personnalisée</title>
+    <title><?php echo  . $nom .; ?> </title>
     <style>
         .post {
             text-align: center;

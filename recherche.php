@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>' .$nom . .'</title>
+    <title>Liste des Posts</title>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -36,7 +36,7 @@
 
         // Requête SQL pour récupérer les posts correspondant à la recherche
         // Requête SQL pour récupérer les posts correspondant à la recherche
-        $requete = "SELECT id, photoVictime, nom, prenom, numero, ville, pseudo FROM utilisateurs WHERE nom = '$search' OR prenom = '$search' OR numero ='$search' OR ville = '$search' OR pseudo='$search' ORDER BY datepost DESC";
+        $requete = "SELECT id, photoVictime, nom, prenom, numero, ville, pseudo FROM utilisateurs WHERE nom = '$search' OR prenom = '$search' OR numero ='$search' OR ville = '$search' OR pseudo='$' ORDER BY datepost DESC";
 
 
         // Exécution de la requête
