@@ -33,7 +33,7 @@
     $id = $_GET['id'];
 
     // Requête SQL pour récupérer les détails du post en fonction de l'identifiant
-    $requete = "SELECT photoVictime, nom, prenom, age, adresse, datepost, pseudo, infos, ville, numero, preuve1, preuve2, preuve3 FROM utilisateurs WHERE id = $id";
+    $requete = "SELECT `id`, `preuve1`, `preuve2`, `preuve3`, `photoVictime`, `nom`, `prenom`, `age`, `adresse`, `ville`, `numero`, `pseudo`, `infos`, `datepost`, `ip` FROM `utilisateurs` WHERE id =$id";
 
     // Exécution de la requête
     $resultat = mysqli_query($connexion, $requete);
@@ -48,17 +48,19 @@
 
         echo '<div class="post">';
         echo '<div class="caption">TETE DU PEDO</div>';
-        echo '<img src="image/' . $photoVictime . '">';
+        if (!empty($photoVictime)){
+            echo '<img src="image/' . $photoVictime . '" class="post-image">'
+        }
         echo '<div class="caption">PREUVE(S)</div>';
         echo '<div class="caption">PREUVE 1</div>';
-        echo '<img src="image/' . $preuve1 . '">';
+        echo '<img src="image/' . $preuve1 . '" class="post-image">'
         if (!empty($preuve2)){
             echo '<div class="caption">PREUVE 2</div>';
-            echo '<img src="image/' . $preuve2 . '">';
+            echo '<img src="image/' . $preuve2 . '" class="post-image">'
         }
         if (!empty($preuve3)){
             echo '<div class="caption">PREUVE 3</div>';
-            echo '<img src="image/' . $preuve3 . '">';
+            echo '<img src="image/' . $preuve3 . '" class="post-image">'
         }
         echo '<div class="Info">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
@@ -79,7 +81,7 @@
         if (!empty($infos)){
             echo  '<div class="caption">Autres Infos =' . $infos . '</div>';
         }
-        echo '<div class="caption">Posté le ' . $datepost . ' par ' . $pseudo .'</div>';
+        echo '<div class="caption">Posté le ' . $datepost . ' par ' . $pseudo . '</div>';
         echo '</div>';
     } else {
         echo "Post introuvable.";
