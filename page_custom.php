@@ -33,7 +33,7 @@
     $id = $_GET['id'];
 
     // Requête SQL pour récupérer les détails du post en fonction de l'identifiant
-    $requete = "SELECT photoVictime, nom, prenom FROM utilisateurs WHERE id = $id";
+    $requete = "SELECT photoVictime, nom, prenom, age, adresse, datepost, pseudo, infos, ville, numero, preuve1, preuve2, preuve3 FROM utilisateurs WHERE id = $id";
 
     // Exécution de la requête
     $resultat = mysqli_query($connexion, $requete);
@@ -79,7 +79,7 @@
         if (!empty($infos)){
             echo  '<div class="caption">Autres Infos =' . $infos . '</div>';
         }
-        echo '<div class="caption">Posté le ' . $datepost .' par ' . $pseudo .'</div>';
+        echo '<div class="caption">Posté le ' . $datepost . ' par ' . $pseudo .'</div>';
         echo '</div>';
     } else {
         echo "Post introuvable.";
