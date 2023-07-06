@@ -15,7 +15,7 @@
         $fichier = $_FILES['fichier'];
         $nomFichier = $fichier['name'];
         $emplacementTemporaire = $fichier['tmp_name'];
-        $destination = "images/" . $nomFichier;
+        $destination = "image/" . $nomFichier;
         
         // Déplace le fichier vers le dossier images
         if(move_uploaded_file($emplacementTemporaire, $destination)){

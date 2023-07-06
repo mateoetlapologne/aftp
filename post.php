@@ -206,17 +206,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Fais tourner la data man</h1>
+    <h2>Si tu n'as pas une infos, laisse la case vide"</h2>
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
         <input type="file" name="image" required>
         <br><br>
 
         <label for="preuve">Preuve(s) :</label>
-        <input type="file" name="preuve[]" multiple>
+        <input type="file" name="preuve[]" multiple required>
         <br><br>
 
         <label for="nom">Nom :</label>
-        <input type="text" name="nom" required>
+        <input type="text" name="nom">
         <br><br>
 
         <label for="prenom">Prénom :</label>
@@ -228,11 +229,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
         <label for="ville">Ville :</label>
-        <input type="text" name="ville" required>
+        <input type="text" name="ville">
         <br><br>
 
         <label for="adresse">Adresse :</label>
-        <input type="text" name="adresse" required>
+        <input type="text" name="adresse">
         <br><br>
 
         <label for="numero">Numéro de téléphone :</label>
