@@ -18,7 +18,7 @@
         $destination = "image/" . $nomFichier;
         
         // Déplace le fichier vers le dossier images
-        if(move_uploaded_file($emplacementTemporaire, $destination)){
+        if(move_uploaded_file($emplacementTemporaire, __DIR__.'/'.$destination)){
             echo "Le fichier a été téléchargé avec succès.";
         } else {
             echo "Une erreur s'est produite lors du téléchargement du fichier.";
