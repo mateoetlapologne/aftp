@@ -45,6 +45,16 @@
         $photoVictime = $row["photoVictime"];
         $nom = $row["nom"];
         $prenom = $row["prenom"];
+        $age = $row["age"];
+        $adresse = $row["adresse"];
+        $datepost = $row["datepost"];
+        $pseudo = $row["pseudo"];
+        $infos = $row["infos"];
+        $ville = $row["ville"];
+        $numero = $row["numero"];
+        $preuve1 = $row["preuve1"];
+        $preuve2 = $row["preuve2"];
+        $preuve3 = $row["preuve3"];
 
         echo '<div class="post">';
         echo '<div class="caption">TETE DU PEDO</div>';
