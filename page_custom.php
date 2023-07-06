@@ -69,7 +69,7 @@
         if (!empty($numero)){
             echo  '<div class="caption">Prénom =' . $numero . '</div>';
         }
-        if (!$age == 999){)){
+        if (!$age == 999){
             echo  '<div class="caption">Nom =' . $age . '</div>';
         }
         if (!empty($ville)){
