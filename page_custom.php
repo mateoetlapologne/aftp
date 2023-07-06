@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><?php echo  . $nom . ?></title>
-    <style>
-        .post {
-            text-align: center;
-        }
-
-        .post img {
-            width: 300px;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .post .caption {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
+<?php
     
-    <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "667", "aftp");
 
@@ -57,6 +35,33 @@
         $preuve3 = $row["preuve3"];
         $timestamp = strtotime($row["datepost"]);
         $datepost = date("Y-m-d", $timestamp);
+    
+
+        ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>. $nom .</title>
+    <style>
+        .post {
+            text-align: center;
+        }
+
+        .post img {
+            width: 300px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .post .caption {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <?php
 
         echo '<div class="post">';
         echo '<div class="caption">TETE DU PEDO</div>';
