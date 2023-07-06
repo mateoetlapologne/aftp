@@ -61,30 +61,21 @@
 }
 
 .post {
-    width: 23%;
+    width: calc(25% - 20px); /* 4 posts par ligne */
     margin-bottom: 20px;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.post::before {
-    content: "";
-    display: block;
-    padding-top: 56.25%; /* Ratio 16:9 */
 }
 
 .post img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
+    border-radius: 5px;
     object-fit: cover;
+    object-position: center;
 }
 
 .post .caption {
