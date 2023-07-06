@@ -20,6 +20,16 @@
     </style>
 </head>
 <body>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
+    </div>
+</div>
     <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "667", "aftp");
@@ -56,7 +66,7 @@
         $preuve3 = $row["preuve3"];
         $timestamp = strtotime($row["datepost"]);
         $datepost = date("Y-m-d", $timestamp);
-        
+
         echo '<div class="post">';
         echo '<div class="caption">TETE DU PEDO</div>';
         if (!empty($photoVictime)){
@@ -73,9 +83,9 @@
             echo '<div class="caption">PREUVE 3</div>';
             echo '<img src="image/' . $preuve3 . '" class="post-image">';
         }
-        echo '<div class="Info">Prénom = ' . $prenom . '</div>';
+        echo '<div class="caption">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
-            echo  '<div class="Info">Nom = ' . $nom . '</div>';
+            echo  '<div class="caption">Nom = ' . $nom . '</div>';
         }
         if (!empty($numero)){
             echo  '<div class="caption">Numéro de telephone  = ' . $numero . '</div>';
@@ -101,5 +111,11 @@
     // Fermeture de la connexion à la base de données
     mysqli_close($connexion);
     ?>
+        <footer>
+    <div class="container">
+        <p class="btc-address">Adresse BTC : 3DsfSuEx5s2iAvfo92EjPHw2H69pYMGkeN</p>
+        <p class="btc-address">Adresse ETH : 0x88cD9D40de35f36A82918b168f78AC1D233BF6bd</p>
+    </div>
+</footer>
 </body>
 </html>
