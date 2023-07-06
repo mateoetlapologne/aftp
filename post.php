@@ -128,6 +128,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="css/post.css">
 </head>
 <body>
+<div class="navbar">
+    <div class="left-button">
+        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
+    </div>
+</div>
     <h1>Fais peté la data man</h1>
     <h2>Si tu n'as pas une infos, laisse la case vide</h2>
     <form method="POST" enctype="multipart/form-data">
