@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Vérification des champs de texte
-    if (!preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $nom)) {
+    if (!empty($nom) && !preg_match("/^[a-zA-ZÀ-ÿ\s-]+$/", $nom)) {
         $erreur = true;
         echo "Le nom ne doit contenir que des lettres, des espaces et des tirets.";
     }
