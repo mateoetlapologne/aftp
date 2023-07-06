@@ -12,7 +12,7 @@
         <a href="#" class="nav-title">Affiche Ton Pedo</a>
     </div>
     <div class="right-buttons">
-        <a href="test.php"><button class="rounded-button">Poster</button></a>
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
         <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
     </div>
 </div>
