@@ -64,12 +64,12 @@
         }
         echo '<div class="Info">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
-        echo  '<div class="Info">Nom =' . $nom . '</div>';
+            echo  '<div class="Info">Nom =' . $nom . '</div>';
         }
         if (!empty($numero)){
             echo  '<div class="caption">Prénom =' . $numero . '</div>';
         }
-        if (!empty($age)){
+        if (!$age == 999){)){
             echo  '<div class="caption">Nom =' . $age . '</div>';
         }
         if (!empty($ville)){
