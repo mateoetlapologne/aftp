@@ -41,7 +41,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo  . $nom . ?></title>
+    <title> squigame </title>
     <style>
         .post {
             text-align: center;
