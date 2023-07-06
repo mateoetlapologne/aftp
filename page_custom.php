@@ -41,7 +41,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>. $nom .</title>
+    <title><?php echo  . $nom . ?></title>
     <style>
         .post {
             text-align: center;
