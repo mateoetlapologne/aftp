@@ -128,38 +128,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="css/post.css">
 </head>
 <body>
-    <h1>Fais tourner la data man</h1>
-    <h2>Si tu n'as pas une infos, laisse la case vide"</h2>
+    <h1>Fais peté la data man</h1>
+    <h2>Si tu n'as pas une infos, laisse la case vide</h2>
     <form method="POST" enctype="multipart/form-data">
-        <label for="image">Image de la victime :</label>
+        <label for="image">Photo de la tete du pedo*</label>
         <input type="file" name="image" required>
         <br><br>
 
-        <label for="preuve">Preuve(s) :*</label>
+        <label for="preuve">Preuve(s)*</label>
         <input type="file" name="preuve[]" multiple required>
         <br><br>
 
-        <label for="nom">Nom :</label>
+        <label for="nom">Nom</label>
         <input type="text" name="nom">
         <br><br>
 
-        <label for="prenom">Prénom :*</label>
+        <label for="prenom">Prénom*</label>
         <input type="text" name="prenom" required>
         <br><br>
 
-        <label for="date_naissance">Age :</label>
+        <label for="date_naissance">Age</label>
         <input type="number" id="age" name="age" min="18" max="100">
         <br><br>
 
-        <label for="ville">Ville :</label>
+        <label for="ville">Ville</label>
         <input type="text" name="ville">
         <br><br>
 
-        <label for="adresse">Adresse :</label>
+        <label for="adresse">Adresse</label>
         <input type="text" name="adresse">
         <br><br>
 
-        <label for="numero">Numéro de téléphone :</label>
+        <label for="numero">Numéro de téléphone du pedo</label>
         <input type="text" name="numero" >
         <br><br>
 
