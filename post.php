@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Si tu n'as pas une infos, laisse la case vide"</h2>
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Image de la victime :</label>
-        <input type="file" name="image">
+        <input type="file" name="image" required>
         <br><br>
 
         <label for="preuve">Preuve(s) :*</label>
