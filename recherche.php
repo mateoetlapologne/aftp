@@ -12,17 +12,14 @@
     <div class="right-buttons">
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
+    
+</div>
+<div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
         <input type="text" name="search" placeholder="Rechercher par nom ou prénom">
-        <button type="submit">Rechercher</button>
+        <button type="submit"><i class="fas fa-search"></i></button>
     </form>
 </div>
-    <h1>Liste des Posts</h1>
-
-    <form action="recherche.php" method="GET">
-        <input type="text" name="search" placeholder="Rechercher par nom ou prénom">
-        <button type="submit">Rechercher</button>
-    </form>
 
     <?php
     // Connexion à la base de données

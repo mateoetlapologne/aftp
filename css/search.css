@@ -115,6 +115,17 @@ footer {
     margin-top: 20px;
 }
 
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
 .search-form input[type="text"] {
     padding: 8px 16px;
     border-radius: 7px;
@@ -123,12 +134,15 @@ footer {
 }
 
 .search-form button[type="submit"] {
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 7px;
     border: none;
-    background-color: #FFF;
-    color: #000;
-    font-weight: bold;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 16px;
     cursor: pointer;
-    font-family: Arial, sans-serif;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
