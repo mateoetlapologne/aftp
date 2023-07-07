@@ -16,17 +16,13 @@
         <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
     </div>
 </div>
-    <h1>Liste des Posts</h1>
-    
     <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
-
     // Vérification de la connexion
     if (!$connexion) {
         die("Erreur de connexion à la base de données : " . mysqli_connect_error());
     }
-
     // Requête SQL pour récupérer les posts dans l'ordre chronologique
     $requete = "SELECT id, photoVictime, nom, prenom FROM utilisateurs ORDER BY datepost DESC";
 
