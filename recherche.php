@@ -5,6 +5,7 @@
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="css/search.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div class="navbar">
     <div class="left-button">
         <a href="index.php" class="nav-title">Affiche Ton Pedo</a>
