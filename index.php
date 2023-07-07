@@ -46,7 +46,7 @@
             
             echo '<a href="page_custom.php?id=' . $id . '">';
             echo '<div class="post">';
-            echo '<img src="data:image/jpeg;base64,<?php echo $photoVictime; ?>" alt="Image recadrée">';
+            echo '<img src="data:image/jpeg;base64,'<?php echo $photoVictime; ?>'" alt="Image recadrée">';
             echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
             echo '</a>';
