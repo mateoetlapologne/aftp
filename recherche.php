@@ -44,25 +44,25 @@
         // Vérification des résultats
         if (mysqli_num_rows($resultat) > 0) {
             // Affichage des posts
-            while ($row = mysqli_fetch_assoc($resultat)) {
-                $id = $row["id"];
-                $photoVictime = $row["photoVictime"];
-                $nom = $row["nom"];
-                $prenom = $row["prenom"];
+            $count = 0;
+        echo '<div class="post-container">';
+        while ($row = mysqli_fetch_assoc($resultat)) {
+            $id = $row["id"];
+            $photoVictime = $row["photoVictime"];
+            $nom = $row["nom"];
+            $prenom = $row["prenom"];
+            echo '<a href="page_custom.php?id=' . $id . '">';
+            echo '<div class="post">';
+            echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
+            echo '</div>';
+            echo '</a>';
 
-                // Création du lien hypertexte vers la page personnalisée du post
-                echo '<a href="page_custom.php?id=' . $id . '">';
-                echo '<div class="post">';
-                echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
-                echo '</div>';
-                echo '</a>';
-    
-                $count++;
-                if ($count % 4 == 0) {
-                    echo '</div><div class="post-container">';
-                }
-    
+            $count++;
+            if ($count % 4 == 0) {
+                echo '</div><div class="post-container">';
             }
+        }
+        echo '</div>';
         } else {
             echo "Aucun post trouvé.";
         }
