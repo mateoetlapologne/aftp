@@ -48,14 +48,18 @@
     
     <?php
         echo '<div class="post">';
-        echo '<div class="caption"><a href="https://www.aftp.fr/aftp/image/' . $photoVictime . '">TETE DU PEDO</a></div>';
+        echo '<a class="caption ">TETE DU PEDO</a>';
+        echo '<a href="https://www.aftp.fr/aftp/image/' . $photoVictime . '"><button class="rounded-button">Voir</button></a>';
         echo '<div class="caption">PREUVE(S)</div>';
-        echo '<a class="caption" href="https://www.aftp.fr/aftp/image/' . $preuve1 .'">Preuve 1</a>';
+        echo '<a class="caption">Preuve 1</a>';
+        echo '<a href="https://www.aftp.fr/aftp/image/' . $preuve1 . '"><button class="rounded-button">Voir</button></a>';
         if (!empty($preuve2)){
-            echo '<a class="caption" href="image/'. $preuve2 .'">Preuve 2</a>';
+            echo '<a class="caption">Preuve 2</a>';
+            echo '<a href="https://www.aftp.fr/aftp/image/' . $preuve2 . '"><button class="rounded-button">Voir</button></a>';
         }
         if (!empty($preuve3)){
-            echo '<a class="caption" href="image/'. $preuve3 .'">Preuve 3</a>';;
+            echo '<a class="caption">Preuve 3</a>';
+            echo '<a href="https://www.aftp.fr/aftp/image/' . $preuve3 . '"><button class="rounded-button">Voir</button></a>';
         }
         echo '<div class="caption">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
