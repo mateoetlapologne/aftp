@@ -83,13 +83,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
 
+        $croppedImage = $_POST['cropped_image'];
         // Génération d'un nom unique pour l'image de la victime
-        $nomPhotoVictime = uniqid() . "." . $imageExtension;
+        $nomPhotoVictime = uniqid() . ".jpg";
 
         // Déplacement de l'image de la victime vers le dossier de destination
         $dossierDestination = 'image/';
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
-            
+        if (file_put_contents($dossierDestination . $nomPhotoVictime, base64_decode($croppedImage))) {
             echo "L'image a été téléchargée avec succès.";
         } else {
             echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Photo de la tete du pedo*</label>
         <input type="file" name="image" id="photopedo" required>
-        <button id="crop-button" style="display: none;">Recadrer</button>
+        <button id="crop-button" style="display: none;" class="recadrer">Recadrer</button>
         <div id="cropped-image-container"></div>
         <script>
             const inputElement = document.getElementById('photopedo');
