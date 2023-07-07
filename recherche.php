@@ -4,7 +4,7 @@
     <title>Liste des Posts</title>
 </head>
 <body>
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/search.css">
 <div class="navbar">
     <div class="left-button">
         <a href="index.php" class="nav-title">Affiche Ton Pedo</a>
