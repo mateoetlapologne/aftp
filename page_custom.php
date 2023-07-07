@@ -1,7 +1,7 @@
 <?php
     
     // Connexion à la base de données
-    $connexion = mysqli_connect("localhost", "root", "667", "aftp");
+    $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
 
     // Vérification de la connexion
     if (!$connexion) {
