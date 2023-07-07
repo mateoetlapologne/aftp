@@ -83,18 +83,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
 
-        // Génération d'un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . "." .$imageExtension;
-        
-        // Récupérer les données de l'image recadrée
         $croppedImageData = $_POST['cropped_image'];
-        
+    
         // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/' . $imageExtension .';base64,', '', $croppedImageData);
+        $croppedImageData = str_replace('data:image/'. $imageExtension .';base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
         
         // Décoder les données base64
         $decodedData = base64_decode($croppedImageData);
+        
+        // Générer un nom unique pour l'image recadrée
+        $nomPhotoVictime = uniqid() . "." . $imageExtension;
         
         // Chemin de destination pour l'enregistrement de l'image recadrée
         $dossierDestination = 'image/';
@@ -106,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Erreur lors de l'enregistrement de l'image recadrée.";
         }
-
 
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
