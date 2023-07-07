@@ -18,7 +18,7 @@
 
     <div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
-        <input type="text" name="search" placeholder="Rechercher par nom ou prénom">
+        <input type="text" name="search" placeholder="Rechercher par nom ou prénom, numéro, ou ville">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>
 </div>
@@ -37,7 +37,7 @@
 
         // Requête SQL pour récupérer les posts correspondant à la recherche
         // Requête SQL pour récupérer les posts correspondant à la recherche
-        $requete = "SELECT id, photoVictime, nom, prenom, numero, ville, pseudo FROM utilisateurs WHERE nom = '$search' OR prenom = '$search' OR numero ='$search' OR ville = '$search' OR pseudo='$' ORDER BY datepost DESC";
+        $requete = "SELECT id, photoVictime, nom, prenom, numero, ville, pseudo FROM utilisateurs WHERE nom = '$search' OR prenom = '$search' OR numero ='$search' OR ville = '$search' ORDER BY datepost DESC";
 
 
         // Exécution de la requête

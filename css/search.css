@@ -115,12 +115,13 @@ footer {
 }
 
 .search-form {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     background-color: #fff;
     border-radius: 7px;
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+  }
 
 .search-form input[type="text"] {
     padding: 8px;
