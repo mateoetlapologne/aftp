@@ -51,6 +51,7 @@
     </div>
     <div class="right-buttons">
         <a href="post.php"><button class="rounded-button">Poster</button></a>
+        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
     </div>
 </div>
     <?php
