@@ -45,6 +45,7 @@ body {
 }
 
 .post {
+  padding-top: 50px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
