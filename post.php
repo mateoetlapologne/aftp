@@ -84,31 +84,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Génération d'un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . $imageExtension; // ou l'extension correspondante à votre besoin
-
+        $nomPhotoVictime = uniqid() . ".png"; // ou ".jpg" ou ".jpeg" selon votre besoin
+        
         // Récupérer les données de l'image recadrée
         $croppedImageData = $_POST['cropped_image'];
-
+        
         // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/'. $imageExtension .';base64,', '', $croppedImageData);
+        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
-
+        
         // Décoder les données base64
         $decodedData = base64_decode($croppedImageData);
-
+        
+        // Créer une image à partir des données décodées
+        $image = imagecreatefromstring($decodedData);
+        
         // Chemin de destination pour l'enregistrement de l'image recadrée
         $dossierDestination = 'image/';
         $imagePath = $dossierDestination . $nomPhotoVictime;
-
-        // Enregistrer les données de l'image recadrée dans un fichier
-        if (file_put_contents($imagePath, $decodedData)) {
-            echo "L'image recadrée a été enregistrée avec succès.";
-            // L'image recadrée est enregistrée sous forme de fichier dans le chemin $imagePath
-            // Vous pouvez maintenant l'utiliser selon vos besoins (par exemple, l'enregistrer dans la base de données)
+        
+        // Enregistrer l'image recadrée au format PNG
+        if (imagepng($image, $imagePath)) {
+            echo "L'image recadrée a été enregistrée avec succès au format PNG.";
+            // Vous pouvez maintenant utiliser le fichier $imagePath qui contient l'image au format PNG
         } else {
             echo "Erreur lors de l'enregistrement de l'image recadrée.";
         }
-
+        
+        // Libérer la mémoire utilisée par l'image
+        imagedestroy($image);
+        
 
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
