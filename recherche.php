@@ -10,8 +10,8 @@
         <a href="#" class="nav-title">Affiche Ton Pedo</a>
     </div>
     <div class="right-buttons">
+        <a href="index.php"><button class="rounded-button">Menu</button></a>
         <a href="post.php"><button class="rounded-button">Poster</button></a>
-        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
     </div>
 </div>
     <h1>Liste des Posts</h1>
