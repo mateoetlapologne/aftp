@@ -1,46 +1,8 @@
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.nav-title {
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-
-.right-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.rounded-button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  border-radius: 5px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
 }
 
 .post {
@@ -49,10 +11,31 @@ body {
   border-radius: 5px;
   padding: 20px;
   max-width: 600px;
-  width: 100%;
-  text-align: center; /* Ajout de cette ligne */
+  margin: 20px auto; /* Ajout de cette ligne pour centrer le post */
+  text-align: center;
 }
 
 .caption {
   margin-bottom: 10px;
+  color: #333;
+}
+
+.caption a {
+  color: #333;
+  text-decoration: none;
+}
+
+.caption a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+.btc-address {
+  color: #333;
+  margin: 5px 0;
 }
