@@ -95,7 +95,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Erreur lors de l'enregistrement de l'image recadrée.";
             }
-        }
 
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
