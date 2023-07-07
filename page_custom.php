@@ -45,7 +45,14 @@
     <title> squigame </title>
 </head>
 <body>
-    
+<div class="navbar">
+    <div class="left-button">
+        <a href="index.php" class="nav-title">Affiche Ton Pedo</a>
+    </div>
+    <div class="right-buttons">
+        <a href="post.php"><button class="rounded-button">Poster</button></a>
+    </div>
+</div>
     <?php
         echo '<div class="post">';
         echo '<a class="caption ">TETE DU PEDO</a>';

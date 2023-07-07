@@ -1,3 +1,42 @@
+.navbar {
+  background-color: #272626;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #433F3F;
+  margin: 0;
+  padding: 20px;
+}
+
+.left-button {
+  margin-right: auto;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.rounded-button {
+  border: none;
+  border-radius: 7px;
+  padding: 8px 16px;
+  background-color: #FFF;
+  color: #FF6347;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
