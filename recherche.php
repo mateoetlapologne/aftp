@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="vertical-space"></div>
-<ordre class="ordre">Liste des Posts</ordre>
+<ordre class="ordre">Entrez des prénoms, nom, numéro de tel, ou vlle</ordre>
 
 <div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
