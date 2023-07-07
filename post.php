@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $croppedImageData = $_POST['cropped_image'];
         
         // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
+        $croppedImageData = str_replace('data:image/' . $imageExtension .';base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
         
         // Décoder les données base64
