@@ -42,7 +42,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title> squigame </title>
+    <title>Affiche ton pedo</title>
 </head>
 <body>
 <div class="navbar">

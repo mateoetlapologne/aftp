@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des Posts</title>
+    <title>Recherche</title>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="css/search.css">
@@ -15,7 +15,7 @@
     
 </div>
     <h1>Liste des Posts</h1>
-
+    
     <div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
         <input type="text" name="search" placeholder="Rechercher par nom ou prénom, numéro, ou ville">
