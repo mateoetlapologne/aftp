@@ -53,10 +53,10 @@
                 // Création du lien hypertexte vers la page personnalisée du post
                 echo '<a href="page_custom.php?id=' . $id . '">';
                 echo '<div class="post">';
-                echo '<img src="image/' . $photoVictime . '">';
-                echo '<div>' . $nom . ' ' . $prenom . '</div>';
+                echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
                 echo '</div>';
                 echo '</a>';
+    
             }
         } else {
             echo "Aucun post trouvé.";
