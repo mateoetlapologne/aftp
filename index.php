@@ -53,7 +53,7 @@
 
             echo '<a href="page_custom.php?id=' . $id . '">';
             echo '<div class="post">';
-            <img src="<?php echo $dataURL; ?>" alt="Image recadrée" class="post-image">
+            <img src= $dataURL alt="Image recadrée" class="post-image">
             echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
             echo '</a>';
