@@ -78,24 +78,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Connexion à la base de données
         $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
 
-        // Vérification de la connexion
-        if (!$connexion) {
-            die("Erreur de connexion à la base de données : " . mysqli_connect_error());
+
+            // Récupérer les données de l'image recadrée
+            $croppedImageData = $_POST['cropped_image'];
+        
+            // Génération d'un nom unique pour l'image recadrée
+            $nomPhotoVictime = uniqid() . ".txt"; // ou ".txt" ou ".dat" selon votre besoin
+        
+            // Chemin de destination pour l'enregistrement de l'image recadrée
+            $dossierDestination = 'image/';
+            $imagePath = $dossierDestination . $nomPhotoVictime;
+        
+            // Enregistrer l'image recadrée en base64
+            if (file_put_contents($imagePath, base64_encode($croppedImageData))) {
+                echo "L'image recadrée a été enregistrée avec succès.";
+            } else {
+                echo "Erreur lors de l'enregistrement de l'image recadrée.";
+            }
         }
 
-        
-        // Récupérer les données de l'image recadrée
-        $croppedImageData = $_POST['cropped_image'];
-
-        // Générer un nom de fichier unique pour l'image
-        $nomPhotoVictime = uniqid() . ".png";
-
-        // Chemin de destination pour l'enregistrement de l'image recadrée
-        $dossierDestination = 'image/';
-        $imagePath = $dossierDestination . $nomPhotoVictime;
-
-        // Enregistrer l'image recadrée directement sans conversion
-        file_put_contents($imagePath, base64_decode($croppedImageData));
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
