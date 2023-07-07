@@ -31,17 +31,10 @@ body {
   border-radius: 7px;
   padding: 8px 16px;
   background-color: #FFF;
-  color: #FF6347;
+  color: #272626;
   font-weight: bold;
   cursor: pointer;
   font-family: Arial, sans-serif;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
-  margin: 0;
-  padding: 0;
 }
 
 .post {
