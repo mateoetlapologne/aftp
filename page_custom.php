@@ -48,7 +48,7 @@
     
     <?php
         echo '<div class="post">';
-        echo '<a class="caption href="https://www.aftp.fr/aftp/image/'. $photoVictime .'">TETE DU PEDO</a>';
+        echo '<div class="caption"><a href="https://www.aftp.fr/aftp/image/' . $photoVictime . '">TETE DU PEDO</a></div>';
         echo '<div class="caption">PREUVE(S)</div>';
         echo '<a class="caption" href="https://www.aftp.fr/aftp/image/' . $preuve1 .'">Preuve 1</a>';
         if (!empty($preuve2)){
