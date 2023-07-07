@@ -144,35 +144,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Photo de la tete du pedo*</label>
         <input type="file" name="image" id="photopedo" required>
+        <button id="crop-button" style="display: none;">Recadrer</button>
         <script>
-            // Sélectionnez l'élément d'entrée de l'image
-const inputElement = document.getElementById('photopedo');
+            const inputElement = document.getElementById('image-input');
+const cropButton = document.getElementById('crop-button');
+const croppedImageContainer = document.getElementById('cropped-image-container');
 
-// Écoutez l'événement de changement de l'élément d'entrée de l'image
+let cropper;
+
 inputElement.addEventListener('change', (event) => {
-  // Récupérer le fichier image téléchargé
   const file = event.target.files[0];
+  const reader = new FileReader();
 
-  // Créer une URL d'objet pour l'image téléchargée
-  const imageUrl = URL.createObjectURL(file);
+  reader.onload = function (e) {
+    const image = new Image();
 
-  // Créer un élément d'image pour afficher l'image téléchargée
-  const imageElement = document.createElement('img');
-  imageElement.src = imageUrl;
+    image.onload = function () {
+      if (cropper) {
+        cropper.destroy();
+      }
 
-  // Ajouter l'élément d'image au conteneur de l'image recadrée
-  const container = document.getElementById('cropped-image-container');
-  container.innerHTML = '';
-  container.appendChild(imageElement);
+      croppedImageContainer.innerHTML = '';
 
-  // Initialiser Jcrop pour l'image téléchargée
-  $(imageElement).Jcrop({
-    aspectRatio: 1, // Ajustez le rapport d'aspect selon vos besoins
-    onChange(crop) {
-      // Gérer l'événement de recadrage pour obtenir les coordonnées du recadrage
-      console.log(crop);
-    },
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      const maxWidth = 500;
+      const maxHeight = 281;
+      let width = image.width;
+      let height = image.height;
+
+      if (width > maxWidth) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      }
+
+      if (height > maxHeight) {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+
+      context.drawImage(image, 0, 0, width, height);
+
+      croppedImageContainer.appendChild(canvas);
+
+      cropper = new Cropper(canvas, {
+        aspectRatio: 500 / 281,
+        viewMode: 2,
+      });
+
+      cropButton.style.display = 'block';
+    };
+
+    image.src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+cropButton.addEventListener('click', () => {
+  const canvas = cropper.getCroppedCanvas({
+    width: 500,
+    height: 281,
   });
+
+  croppedImageContainer.innerHTML = '';
+  croppedImageContainer.appendChild(canvas);
 });
         </script>
         <br><br>
