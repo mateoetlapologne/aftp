@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="file" name="image" id="photopedo" required>
         <button id="crop-button" style="display: none;">Recadrer</button>
         <script>
-            const inputElement = document.getElementById('image-input');
+            const inputElement = document.getElementById('photopedo');
 const cropButton = document.getElementById('crop-button');
 const croppedImageContainer = document.getElementById('cropped-image-container');
 
