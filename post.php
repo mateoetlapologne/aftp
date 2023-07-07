@@ -84,13 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Génération d'un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . $imageExtension;
+        $nomPhotoVictime = uniqid() . "." .$imageExtension;
         
         // Récupérer les données de l'image recadrée
         $croppedImageData = $_POST['cropped_image'];
         
         // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/'. $imageExtension .';base64,', '', $croppedImageData);
+        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
         
         // Décoder les données base64
