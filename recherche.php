@@ -57,6 +57,11 @@
                 echo '</div>';
                 echo '</a>';
     
+                $count++;
+                if ($count % 4 == 0) {
+                    echo '</div><div class="post-container">';
+                }
+    
             }
         } else {
             echo "Aucun post trouvé.";
