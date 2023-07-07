@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 // Génération d'un nom unique pour l'image recadrée
-$nomPhotoVictime = uniqid() . ".png";
+$nomPhotoVictime = uniqid() . ". " . $imageExtension . "";
 
 // Récupérer les données de l'image recadrée
 $croppedImageData = $_POST['cropped_image'];
@@ -112,7 +112,6 @@ if (imagepng($image, $imagePath)) {
 }
 
 // Libérer la mémoire utilisée par l'image
-imagedestroy($image);
 
 
 
