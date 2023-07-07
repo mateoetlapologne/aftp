@@ -82,17 +82,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$connexion) {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
-
+        
         $nomPhotoVictime = uniqid() . ".jpg"; // ou l'extension correspondante à votre besoin
 
-// Déplacement de l'image recadrée vers le dossier de destination
-$dossierDestination = 'image/';
-if (move_uploaded_file($_FILES["cropped_image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
-    echo "L'image recadrée a été téléchargée avec succès.";
-} else {
-    echo "Erreur lors du téléchargement de l'image recadrée.";
-}
-
+        // Récupérer les données de l'image recadrée
+        $croppedImageData = $_POST['cropped_image'];
+        
+        // Supprimer l'en-tête de l'encodage base64
+        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
+        $croppedImageData = str_replace(' ', '+', $croppedImageData);
+        
+        // Décoder les données base64 et enregistrer l'image recadrée
+        $decodedData = base64_decode($croppedImageData);
+        
+        // Enregistrer l'image recadrée dans le format JPEG
+        $imagePath = $dossierDestination . $nomPhotoVictime;
+        file_put_contents($imagePath, $decodedData);
+        
+        // Vérifier si l'enregistrement s'est bien passé
+        if ($imagePath) {
+            echo "L'image recadrée a été téléchargée avec succès.";
+        } else {
+            echo "Erreur lors du téléchargement de l'image recadrée.";
+        }
+        
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
