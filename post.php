@@ -90,38 +90,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $croppedImageData = $_POST['cropped_image'];
         
         // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
+        $croppedImageData = str_replace('data:image/'. $imageExtension .';base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
         
         // Décoder les données base64
         $decodedData = base64_decode($croppedImageData);
-        
-        // Créer une image à partir des données décodées
-        $image = imagecreatefromstring($decodedData);
         
         // Chemin de destination pour l'enregistrement de l'image recadrée
         $dossierDestination = 'image/';
         $imagePath = $dossierDestination . $nomPhotoVictime;
         
         // Enregistrer l'image recadrée au format PNG
-        if (imagepng($image, $imagePath)) {
-            echo "L'image recadrée a été convertie et enregistrée avec succès au format PNG.";
-        
-            // Chemin de destination pour l'upload de l'image
-            $dossierUpload = 'image/';
-        
-            // Déplacer l'image recadrée vers le dossier de destination
-            if (move_uploaded_file($imagePath, $dossierUpload . $nomPhotoVictime)) {
-                echo "L'image recadrée a été téléchargée avec succès.";
-            } else {
-                echo "Erreur lors du téléchargement de l'image recadrée.";
-            }
+        if (file_put_contents($imagePath, $decodedData)) {
+            echo "L'image recadrée a été enregistrée avec succès.";
         } else {
-            echo "Erreur lors de la conversion et de l'enregistrement de l'image recadrée.";
+            echo "Erreur lors de l'enregistrement de l'image recadrée.";
         }
-        
-        // Libérer la mémoire utilisée par l'image
-        imagedestroy($image);
 
 
 
