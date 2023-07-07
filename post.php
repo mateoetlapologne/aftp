@@ -83,29 +83,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
 
-        $croppedImageData = $_POST['cropped_image'];
-    
-        // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/'. $imageExtension .';base64,', '', $croppedImageData);
-        $croppedImageData = str_replace(' ', '+', $croppedImageData);
+        function base64_to_jpeg($base64_string, $output_file) {
+            // Ouvrir le fichier de sortie en écriture binaire
+            $ifp = fopen($output_file, 'wb');
         
-        // Décoder les données base64
-        $decodedData = base64_decode($croppedImageData);
+            // Diviser la chaîne sur les virgules
+            // $data[0] == "data:image/jpeg;base64"
+            // $data[1] == <chaîne base64 réelle>
+            $data = explode(',', $base64_string);
         
-        // Générer un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . "." . $imageExtension;
+            // Nous pourrions ajouter ici une validation en s'assurant que count($data) > 1
+            fwrite($ifp, base64_decode($data[1]));
         
-        // Chemin de destination pour l'enregistrement de l'image recadrée
-        $dossierDestination = 'image/';
-        $imagePath = $dossierDestination . $nomPhotoVictime;
+            // Nettoyer la ressource du fichier
+            fclose($ifp);
         
-        // Enregistrer l'image recadrée au format PNG
-        if (file_put_contents($imagePath, $decodedData)) {
-            echo "L'image recadrée a été enregistrée avec succès.";
-        } else {
-            echo "Erreur lors de l'enregistrement de l'image recadrée.";
+            return $output_file;
         }
-
+        
+            // Récupérer les données de l'image recadrée
+            $croppedImageData = $_POST['cropped_image'];
+        
+            // Générer un nom de fichier unique pour l'image
+            $nomPhotoVictime = uniqid() . ".jpg"; // ou ".png" selon vos besoins
+        
+            // Chemin de destination pour l'enregistrement de l'image recadrée
+            $dossierDestination = 'image/';
+            $imagePath = $dossierDestination . $nomPhotoVictime;
+        
+            // Enregistrer l'image recadrée
+            base64_to_jpeg($croppedImageData, $imagePath);
+        
+            // ...
+        }
+        
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
