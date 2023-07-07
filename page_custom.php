@@ -42,7 +42,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Affiche ton pedo</title>
+    <title>Affiche ton Pedo</title>
 </head>
 <body>
 <div class="navbar">
