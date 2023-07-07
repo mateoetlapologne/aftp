@@ -111,7 +111,7 @@ footer {
 }
 .ordre {
     text-align: center;
-    margin-top: 100px; /* ou ajustez la valeur en fonction de l'espace souhaité */
+    padding-top: 100px; /* ou ajustez la valeur en fonction de l'espace souhaité */
 }
 
 .search-container {
