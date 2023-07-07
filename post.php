@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="file" name="image" id="photopedo" required>
         <script>
             // Sélectionnez l'élément d'entrée de l'image
-const inputElement = document.getElementById('image-input');
+const inputElement = document.getElementById('photopedo');
 
 // Écoutez l'événement de changement de l'élément d'entrée de l'image
 inputElement.addEventListener('change', (event) => {
@@ -165,17 +165,15 @@ inputElement.addEventListener('change', (event) => {
   container.innerHTML = '';
   container.appendChild(imageElement);
 
-  // Initialiser Cropper.js pour l'image téléchargée
-  const cropper = new Cropper(imageElement, {
+  // Initialiser Jcrop pour l'image téléchargée
+  $(imageElement).Jcrop({
     aspectRatio: 1, // Ajustez le rapport d'aspect selon vos besoins
-    crop(event) {
+    onChange(crop) {
       // Gérer l'événement de recadrage pour obtenir les coordonnées du recadrage
-      const croppedData = cropper.getData();
-      console.log(croppedData);
+      console.log(crop);
     },
   });
 });
-
         </script>
         <br><br>
         <div id="cropped-image-container"></div>
