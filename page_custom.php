@@ -50,6 +50,7 @@
         <a href="index.php"><button class="rounded-button">Menu</button></a>
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
+    </div>
     <title> squigame </title>
 </head>
 <body>
