@@ -83,17 +83,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
 
-        $croppedImage = $_POST['cropped_image'];
-        // Génération d'un nom unique pour l'image de la victime
-        $nomPhotoVictime = uniqid() . ".jpg";
+        $nomPhotoVictime = uniqid() . ".jpg"; // ou l'extension correspondante à votre besoin
 
-        // Déplacement de l'image de la victime vers le dossier de destination
-        $dossierDestination = 'image/';
-        if (file_put_contents($dossierDestination . $nomPhotoVictime, base64_decode($croppedImage))) {
-            echo "L'image a été téléchargée avec succès.";
-        } else {
-            echo "Erreur lors du téléchargement de l'image : " . $_FILES["image"]["error"];
-        }
+// Déplacement de l'image recadrée vers le dossier de destination
+$dossierDestination = 'image/';
+if (move_uploaded_file($_FILES["cropped_image"]["tmp_name"], $dossierDestination . $nomPhotoVictime)) {
+    echo "L'image recadrée a été téléchargée avec succès.";
+} else {
+    echo "Erreur lors du téléchargement de l'image recadrée.";
+}
+
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
