@@ -12,16 +12,15 @@
     <div class="right-buttons">
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
-    
 </div>
-    <h1>Liste des Posts</h1>
-    
-    <div class="search-container">
+<ordre class="ordre">Liste des Posts</ordre>
+
+<div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
-        <input type="text" name="search" placeholder="Rechercher par nom ou prénom, numéro, ou ville">
+        <input type="text" name="search" placeholder="Nom ou Prénom, Numéro, ou Ville">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>
-</div>
+</div
     <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
@@ -68,10 +67,7 @@
         } else {
             echo "Aucun post trouvé.";
         }
-    } else {
-        echo "Effectuez une recherche.";
     }
-
     // Fermeture de la connexion à la base de données
     mysqli_close($connexion);
     ?>

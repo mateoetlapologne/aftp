@@ -108,6 +108,10 @@ footer {
     font-weight: bold;
     font-size: 16px;
 }
+.ordre {
+    text-align: center;
+    margin-top: 50px;
+}
 
 .search-container {
     text-align: center;
@@ -121,10 +125,21 @@ footer {
     border-radius: 7px;
     padding: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
 
 .search-form input[type="text"] {
     padding: 8px;
     border: none;
     font-size: 16px;
+}
+
+.search-form button[type="submit"] {
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
