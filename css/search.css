@@ -109,40 +109,21 @@ footer {
     font-size: 16px;
 }
 
-.search-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
 .search-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .search-form {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-form input[type="text"] {
-    padding: 8px 16px;
-    border-radius: 7px;
-    border: none;
-    font-size: 16px;
-}
-
-.search-form button[type="submit"] {
     padding: 8px;
-    border-radius: 7px;
     border: none;
-    background-color: transparent;
-    color: #FFF;
     font-size: 16px;
-    cursor: pointer;
-}
-
-.search-form button[type="submit"]:hover {
-    background-color: rgba(255, 255, 255, 0.2);
 }

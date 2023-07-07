@@ -14,13 +14,14 @@
     </div>
     
 </div>
-<div class="search-container">
+    <h1>Liste des Posts</h1>
+
+    <div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
         <input type="text" name="search" placeholder="Rechercher par nom ou prénom">
         <button type="submit"><i class="fas fa-search"></i></button>
     </form>
 </div>
-
     <?php
     // Connexion à la base de données
     $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
