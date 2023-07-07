@@ -1,72 +1,63 @@
-css 
+body {
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
-  background-color: #272626;
+  background-color: #333;
+  color: #fff;
   padding: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  position: fixed;
-  margin: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-body {
-  font-family: Arial, sans-serif;
-  background-color: #433F3F;
-  margin: 0;
-  padding: 20px;
 }
 
-.left-button {
-  margin-right: auto;
-}
-
-.right-buttons {
-  display: flex;
-  gap: 10px;
+.navbar a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .rounded-button {
+  background-color: #0088cc;
+  color: #fff;
   border: none;
-  border-radius: 7px;
-  padding: 8px 16px;
-  background-color: #FFF;
-  color: #FF6347;
-  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
   cursor: pointer;
-  font-family: Arial, sans-serif;
 }
-    .post {
-      text-align: center;
-      margin: 20px auto;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      max-width: 500px;
-    }
 
-    .post img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
+.post {
+  text-align: center;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+}
 
-    .caption {
-      margin-top: 10px;
-      font-weight: bold;
-    }
+.post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
+.caption {
+  margin-top: 10px;
+  font-weight: bold;
+}
 
-    .btc-address {
-      margin: 5px 0;
-    }
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.btc-address {
+  margin: 5px 0;
+}
