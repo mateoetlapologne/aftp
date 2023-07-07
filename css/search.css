@@ -108,3 +108,27 @@ footer {
     font-weight: bold;
     font-size: 16px;
 }
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 8px 16px;
+    border-radius: 7px;
+    border: none;
+    font-size: 16px;
+}
+
+.search-form button[type="submit"] {
+    padding: 8px 16px;
+    border-radius: 7px;
+    border: none;
+    background-color: #FFF;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}

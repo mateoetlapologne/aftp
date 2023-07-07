@@ -12,6 +12,10 @@
     <div class="right-buttons">
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
+    <form action="recherche.php" method="GET" class="search-form">
+        <input type="text" name="search" placeholder="Rechercher par nom ou prénom">
+        <button type="submit">Rechercher</button>
+    </form>
 </div>
     <h1>Liste des Posts</h1>
 
