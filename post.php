@@ -96,23 +96,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Décoder les données base64
         $decodedData = base64_decode($croppedImageData);
         
-        // Créer une image à partir des données décodées
-        $image = imagecreatefromstring($decodedData);
-        
         // Chemin de destination pour l'enregistrement de l'image recadrée
         $dossierDestination = 'image/';
         $imagePath = $dossierDestination . $nomPhotoVictime;
         
-        // Enregistrer l'image recadrée au format PNG
-        if (imagepng($image, $imagePath)) {
-            echo "L'image recadrée a été enregistrée avec succès au format PNG.";
-            // Vous pouvez maintenant utiliser le fichier $imagePath qui contient l'image au format PNG
+        // Enregistrer les données de l'image recadrée en tant que fichier
+        if (file_put_contents($imagePath, $decodedData)) {
+            echo "L'image recadrée a été enregistrée avec succès.";
+            // Vous pouvez maintenant utiliser le fichier $imagePath qui contient l'image au format spécifié (PNG, JPG, JPEG)
         } else {
             echo "Erreur lors de l'enregistrement de l'image recadrée.";
         }
-        
-        // Libérer la mémoire utilisée par l'image
-        imagedestroy($image);
+
         
 
 
