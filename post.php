@@ -83,32 +83,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
 
-        // Génération d'un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . ".png"; // ou ".jpg" ou ".jpeg" selon votre besoin
-        
-        // Récupérer les données de l'image recadrée
-        $croppedImageData = $_POST['cropped_image'];
-        
-        // Supprimer l'en-tête de l'encodage base64
-        $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
-        $croppedImageData = str_replace(' ', '+', $croppedImageData);
-        
-        // Décoder les données base64
-        $decodedData = base64_decode($croppedImageData);
-        
-        // Chemin de destination pour l'enregistrement de l'image recadrée
-        $dossierDestination = 'image/';
-        $imagePath = $dossierDestination . $nomPhotoVictime;
-        
-        // Enregistrer les données de l'image recadrée en tant que fichier
-        if (file_put_contents($imagePath, $decodedData)) {
-            echo "L'image recadrée a été enregistrée avec succès.";
-            // Vous pouvez maintenant utiliser le fichier $imagePath qui contient l'image au format spécifié (PNG, JPG, JPEG)
-        } else {
-            echo "Erreur lors de l'enregistrement de l'image recadrée.";
-        }
+// Génération d'un nom unique pour l'image recadrée
+$nomPhotoVictime = uniqid() . ".png";
 
-        
+// Récupérer les données de l'image recadrée
+$croppedImageData = $_POST['cropped_image'];
+
+// Supprimer l'en-tête de l'encodage base64
+$croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
+$croppedImageData = str_replace(' ', '+', $croppedImageData);
+
+// Décoder les données base64
+$decodedData = base64_decode($croppedImageData);
+
+// Créer une image à partir des données décodées
+$image = imagecreatefromstring($decodedData);
+
+// Chemin de destination pour l'enregistrement de l'image recadrée
+$dossierDestination = 'image/';
+$imagePath = $dossierDestination . $nomPhotoVictime;
+
+// Convertir et enregistrer l'image au format PNG
+if (imagepng($image, $imagePath)) {
+    echo "L'image recadrée a été convertie et enregistrée avec succès au format PNG.";
+    // Vous pouvez maintenant utiliser le fichier $imagePath qui contient l'image convertie en format PNG
+} else {
+    echo "Erreur lors de la conversion et de l'enregistrement de l'image recadrée.";
+}
+
+// Libérer la mémoire utilisée par l'image
+imagedestroy($image);
+
 
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
