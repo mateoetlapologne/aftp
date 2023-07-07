@@ -48,14 +48,14 @@
     
     <?php
         echo '<div class="post">';
-        echo '<div class="caption href="image/'. $photoVictime .'">TETE DU PEDO</div>';
+        echo '<a class="caption href="image/'. $photoVictime .'">TETE DU PEDO</a>';
         echo '<div class="caption">PREUVE(S)</div>';
-        echo '<div class="caption" href="https://www.aftp.fr/aftp/image/' . $preuve1 .'">Preuve 1</div>';
+        echo '<a class="caption" href="https://www.aftp.fr/aftp/image/' . $preuve1 .'">Preuve 1</a>';
         if (!empty($preuve2)){
-            echo '<div class="caption" href="image/'. $preuve2 .'">Preuve 2</div>';
+            echo '<a class="caption" href="image/'. $preuve2 .'">Preuve 2</a>';
         }
         if (!empty($preuve3)){
-            echo '<div class="caption" href="image/'. $preuve3 .'">Preuve 3</div>';;
+            echo '<a class="caption" href="image/'. $preuve3 .'">Preuve 3</a>';;
         }
         echo '<div class="caption">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
