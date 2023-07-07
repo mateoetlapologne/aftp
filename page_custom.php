@@ -51,22 +51,6 @@
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
     <title> squigame </title>
-    <style>
-        .post {
-            text-align: center;
-        }
-
-        .post img {
-            width: 300px;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .post .caption {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     
