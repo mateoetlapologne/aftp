@@ -124,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <title>Affiche ton pedo</title>
     <link rel="stylesheet" type="text/css" href="css/post.css">
 </head>
@@ -141,13 +142,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Si tu n'as pas une infos, laisse la case vide</h2>
     <form method="POST" enctype="multipart/form-data">
         <label for="image">Photo de la tete du pedo*</label>
-        <input type="file" name="image" required>
+        <input type="file" name="image" id="photopedo" required>
+        <script>
+            // Sélectionnez l'élément d'entrée de l'image
+const inputElement = document.getElementById('image-input');
+
+// Écoutez l'événement de changement de l'élément d'entrée de l'image
+inputElement.addEventListener('change', (event) => {
+  // Récupérer le fichier image téléchargé
+  const file = event.target.files[0];
+
+  // Créer une URL d'objet pour l'image téléchargée
+  const imageUrl = URL.createObjectURL(file);
+
+  // Créer un élément d'image pour afficher l'image téléchargée
+  const imageElement = document.createElement('img');
+  imageElement.src = imageUrl;
+
+  // Ajouter l'élément d'image au conteneur de l'image recadrée
+  const container = document.getElementById('cropped-image-container');
+  container.innerHTML = '';
+  container.appendChild(imageElement);
+
+  // Initialiser Cropper.js pour l'image téléchargée
+  const cropper = new Cropper(imageElement, {
+    aspectRatio: 1, // Ajustez le rapport d'aspect selon vos besoins
+    crop(event) {
+      // Gérer l'événement de recadrage pour obtenir les coordonnées du recadrage
+      const croppedData = cropper.getData();
+      console.log(croppedData);
+    },
+  });
+});
+
+        </script>
         <br><br>
+        <div id="cropped-image-container"></div>
 
         <label for="preuve">Preuve(s)*</label>
         <input type="file" name="preuve[]" multiple required>
         <br><br>
-
+       
         <label for="nom">Nom</label>
         <input type="text" name="nom">
         <br><br>
