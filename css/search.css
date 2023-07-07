@@ -12,6 +12,11 @@
     right: 0;
     z-index: 1;
 }
+
+.vertical-space {
+    height: 50px; /* Ajustez la hauteur de l'espace vertical selon vos besoins */
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #433F3F;

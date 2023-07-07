@@ -14,6 +14,7 @@
         <a href="post.php"><button class="rounded-button">Poster</button></a>
     </div>
 </div>
+<div class="vertical-space"></div>
 <ordre class="ordre">Liste des Posts</ordre>
 
 <div class="search-container">
