@@ -42,27 +42,17 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/custom.css">
-<div class="navbar">
-    <div class="left-button">
-        <a href="index.php" class="nav-title">Affiche Ton Pedo</a>
-    </div>
-    <div class="right-buttons">
-        <a href="post.php"><button class="rounded-button">Poster</button></a>
-        <a href="recherche.php"><button class="rounded-button">Rechercher</button></a>
-    </div>
-</div>
     <title> squigame </title>
 </head>
 <body>
     
     <?php
-
         echo '<div class="post">';
         echo '<div class="caption href="image/'. $photoVictime .'">TETE DU PEDO</div>';
         echo '<div class="caption">PREUVE(S)</div>';
-        echo '<div class="caption href="image/'. $preuve3 .'">Preuve 2</div>';
+        echo '<div class="caption href="https://www.aftp.fr/aftp/image/' . $preuve1 .'">Preuve 1</div>';
         if (!empty($preuve2)){
-            echo '<div class="caption href="image/'. $preuve1 .'">Preuve 2</div>';
+            echo '<div class="caption href="image/'. $preuve2 .'">Preuve 2</div>';
         }
         if (!empty($preuve3)){
             echo '<div class="caption href="image/'. $preuve3 .'">Preuve 3</div>';;
