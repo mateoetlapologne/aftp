@@ -82,9 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$connexion) {
             die("Erreur de connexion à la base de données : " . mysqli_connect_error());
         }
-
+        
                 // Génération d'un nom unique pour l'image recadrée
-        $nomPhotoVictime = uniqid() . ".jpg"; // ou l'extension correspondante à votre besoin
+        $nomPhotoVictime = uniqid() . $imageExtension; // ou l'extension correspondante à votre besoin
 
         // Récupérer les données de l'image recadrée
         $croppedImageData = $_POST['cropped_image'];
@@ -93,20 +93,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $croppedImageData = str_replace('data:image/jpeg;base64,', '', $croppedImageData);
         $croppedImageData = str_replace(' ', '+', $croppedImageData);
 
-        // Décoder les données base64 et enregistrer l'image recadrée
+        // Décoder les données base64
         $decodedData = base64_decode($croppedImageData);
 
         // Chemin de destination pour l'enregistrement de l'image recadrée
         $dossierDestination = 'image/';
         $imagePath = $dossierDestination . $nomPhotoVictime;
 
-        // Enregistrer l'image recadrée dans le dossier de destination
+        // Enregistrer les données de l'image recadrée en base64
         if (file_put_contents($imagePath, $decodedData)) {
-            echo "L'image recadrée a été téléchargée avec succès.";
+            echo "L'image recadrée a été enregistrée avec succès.";
+            // L'image recadrée est enregistrée sous forme de données base64 dans le fichier $imagePath
+            // Vous pouvez maintenant l'utiliser selon vos besoins (par exemple, l'enregistrer dans la base de données)
         } else {
-            echo "Erreur lors du téléchargement de l'image recadrée.";
+            echo "Erreur lors de l'enregistrement de l'image recadrée.";
         }
-        
+
 
         // Génération de noms uniques pour les preuves et enregistrement dans la base de données
         $preuveNoms = array();
