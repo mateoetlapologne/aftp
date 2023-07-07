@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Si aucune erreur, enregistrement des données dans la base de données et upload des images
     if (!$erreur) {
         // Connexion à la base de données
-        $connexion = mysqli_connect("localhost", "root", "667", "aftp");
+        $connexion = mysqli_connect("localhost", "root", "Pologne667", "aftp");
 
         // Vérification de la connexion
         if (!$connexion) {
