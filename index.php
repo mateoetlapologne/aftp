@@ -43,21 +43,10 @@
             $photoVictime = $row["photoVictime"];
             $nom = $row["nom"];
             $prenom = $row["prenom"];
-            $imagePath = 'image/your_image.txt'; // Remplacez "your_image.txt" par le nom réel du fichier
-
-            // Lire le contenu du fichier (la chaîne base64)
-            $imageData = file_get_contents($imagePath);
             
-            // Générer l'URL de données (data URL) pour l'image
-            $dataURL = 'data:image/png;base64,' . $imageData; // Remplacez "image/png" par le type MIME de votre image
-            
-            ?>
-            
-            <!-- Afficher l'image sur la page HTML -->
-
             echo '<a href="page_custom.php?id=' . $id . '">';
             echo '<div class="post">';
-            echo '<img src="<?php echo $dataURL; ?>" alt="Image recadrée">';
+            echo '<img src="image/' . $photoVictime . '" class="post-image">';
             echo '<div class="caption">' . $nom . ' ' . $prenom . '</div>';
             echo '</div>';
             echo '</a>';
