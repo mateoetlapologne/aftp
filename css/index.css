@@ -71,13 +71,15 @@ body {
 }
 
 .post {
-    width: calc(25% - 20px); /* 4 posts par ligne */
-    margin-bottom: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
+    padding-top: 50px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto; /* Ajout de cette ligne pour centrer le post */
+  text-align: center;
+  display: inline-block; /* Ajout de cette ligne */
 }
 
 .post img {
@@ -87,6 +89,12 @@ body {
     object-fit: cover;
     object-position: center;
 }
+
+.caption {
+    margin-bottom: 10px;
+    color: #333;
+    width: fit-content; /* Ajout de cette ligne */
+  }
 
 .post .caption {
     margin-top: 10px;
