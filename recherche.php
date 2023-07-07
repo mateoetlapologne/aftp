@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="vertical-space"></div>
-<ordre class="ordre">Entrez des prénoms, nom, numéro de tel, ou vlle</ordre>
+<ordre class="ordre">Recherchez par: prénoms, nom, numéro de tel, ou ville</ordre>
 
 <div class="search-container">
     <form action="recherche.php" method="GET" class="search-form">
