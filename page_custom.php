@@ -44,7 +44,7 @@
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <div class="navbar">
     <div class="left-button">
-        <a href="#" class="nav-title">Affiche Ton Pedo</a>
+        <a href="index.php" class="nav-title">Affiche Ton Pedo</a>
     </div>
     <div class="right-buttons">
         <a href="post.php"><button class="rounded-button">Poster</button></a>
@@ -58,20 +58,14 @@
     <?php
 
         echo '<div class="post">';
-        echo '<div class="caption">TETE DU PEDO</div>';
-        if (!empty($photoVictime)){
-            echo '<img src="image/' . $photoVictime . '" class="post-image">';
-        }
+        echo '<div class="caption href="image/'. $photoVictime .'">TETE DU PEDO</div>';
         echo '<div class="caption">PREUVE(S)</div>';
-        echo '<div class="caption">PREUVE 1</div>';
-        echo '<img src="image/' . $preuve1 . '" class="post-image">';
+        echo '<div class="caption href="image/'. $preuve3 .'">Preuve 2</div>';
         if (!empty($preuve2)){
-            echo '<div class="caption">PREUVE 2</div>';
-            echo '<img src="image/' . $preuve2 . '" class="post-image">';
+            echo '<div class="caption href="image/'. $preuve1 .'">Preuve 2</div>';
         }
         if (!empty($preuve3)){
-            echo '<div class="caption">PREUVE 3</div>';
-            echo '<img src="image/' . $preuve3 . '" class="post-image">';
+            echo '<div class="caption href="image/'. $preuve3 .'">Preuve 3</div>';;
         }
         echo '<div class="caption">Prénom = ' . $prenom . '</div>';
         if (!empty($nom)){
